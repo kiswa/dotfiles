@@ -6,4 +6,4 @@ A few files for setting up bash and Vim in different environments. Also includes
  * `.bashrc` includes `\home\kiswa\bin` and __Ruby__ in the path, and customizes the command line
  * `bin`
   * `fixShareCopy` resets file and folder permissions for a directory copied into a VM from a host share. Use it as `fixShareCopy copiedDirName`.
-  * `spinupWebsite` uses the files in the `swFiles` directory and creates a site setup with __Bootstrap__ and __Font Awesome__. It also uses __Gulp__, __Bower__ and __npm__ to load everything needed. Use it as `spinupWebsite newsitename` to get a directory `newsitename` ready to go.
+  * `spinupWebsite` uses the files in the `swFiles` directory and creates a site setup with __Bootstrap__ and __Font Awesome__. It also uses __Gulp__, __Bower__ and __npm__ to load everything needed. Use it as `spinupWebsite newSiteName` to get a directory `newSiteName` ready to go.

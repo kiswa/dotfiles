@@ -18,7 +18,8 @@ var gulp = require('gulp'),
     paths = {
         js: src + 'js/*.js',
         scss: src + 'scss/*.scss',
-        html: src + '*.html'
+        html: src + '*.html',
+        images: src + 'images/*'
     };
 
 gulp.task('clean', function() {
@@ -31,7 +32,7 @@ gulp.task('lint', function() {
         .pipe(jsLint.reporter(jsLintRep));
 
     gulp.src(paths.scss)
-        .pipe(scssLint({ 'config': 'lint.yml' }))
+        .pipe(scssLint())
 });
 
 gulp.task('vendor', function() {
@@ -76,20 +77,25 @@ gulp.task('html', function() {
         .pipe(gulp.dest(dist));
 });
 
-gulp.task('watch', function() {
-    var jsWatch = gulp.watch(paths.js, ['lint', 'scripts']),
-        sassWatch = gulp.watch(paths.scss, ['lint', 'styles']),
-        htmlWatch = gulp.watch(paths.html, ['html']);
+gulp.task('images', function() {
+    return gulp.src(paths.images)
+        .pipe(gulp.dest(dist + 'images/'));
+});
 
-    jsWatch.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+gulp.task('watch', function() {
+    gulp.watch(paths.js, function(event) {
+        gulp.run(['lint', 'scripts']);
+        console.log('File ' + event.path + ' was ' + event.type '. Running tasks...');
     });
-    sassWatch.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    gulp.watch(paths.scss, function(event) {
+        gulp.run(['lint', 'styles']);
+        console.log('File ' + event.path + ' was ' + event.type '. Running tasks...');
     });
-    htmlWatch.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    gulp.watch(paths.html, function(event) {
+        gulp.run('html');
+        console.log('File ' + event.path + ' was ' + event.type '. Running tasks...');
     });
 });
 
-gulp.task('default', ['clean', 'lint', 'vendor', 'styles', 'scripts', 'html']);
+gulp.task('default', ['clean', 'lint', 'vendor', 'styles', 'scripts', 'html', 'images']);
+
