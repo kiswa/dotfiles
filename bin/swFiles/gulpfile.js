@@ -16,23 +16,27 @@ var gulp = require('gulp'),
     src = 'src/',
     dist = 'dist/',
     paths = {
-        js: src + 'js/*.js',
-        scss: src + 'scss/*.scss',
-        html: src + '*.html',
-        images: src + 'images/*'
+        js: src + 'js/**/*.js',
+        scss: src + 'scss/**/*.scss',
+        images: src + 'images/**/*',
+        html: src + '**/*.html'
     };
 
 gulp.task('clean', function() {
     return del(dist);
 });
 
-gulp.task('lint', function() {
-    gulp.src(paths.js)
+gulp.task('lint', ['lintJs', 'lintScss']);
+
+gulp.task('lintJs', function() {
+    return gulp.src(paths.js)
         .pipe(jsLint())
         .pipe(jsLint.reporter(jsLintRep));
+});
 
-    gulp.src(paths.scss)
-        .pipe(scssLint())
+gulp.task('lintScss', function() {
+    return gulp.src(paths.scss)
+        .pipe(scssLint());
 });
 
 gulp.task('vendor', function() {
@@ -83,18 +87,17 @@ gulp.task('images', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(paths.js, function(event) {
-        gulp.run(['lint', 'scripts']);
-        console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
-    });
-    gulp.watch(paths.scss, function(event) {
-        gulp.run(['lint', 'styles']);
-        console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
-    });
-    gulp.watch(paths.html, function(event) {
-        gulp.run('html');
-        console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
-    });
+    var watchJs = gulp.watch(paths.js, ['lintJs', 'scripts']),
+        watchScss = gulp.watch(paths.scss, ['lintScss', 'styles']),
+        watchHtml = gulp.watch(paths.html, ['html']),
+
+        onChanged = function(event) {
+            console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
+        };
+
+    watchJs.on('change', onChanged);
+    watchScss.on('change', onChanged);
+    watchHtml.on('change', onChanged);
 });
 
 gulp.task('default', ['clean', 'lint', 'vendor', 'styles', 'scripts', 'html', 'images']);

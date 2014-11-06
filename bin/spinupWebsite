@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir $1 && cd $1 && mkdir -p src/scss && mkdir src/js
+mkdir $1 && cd $1 && mkdir -p src/scss && mkdir src/js && mkdir src/images
 
 bower install bootstrap-sass-official fontawesome --save
 
@@ -13,4 +13,3 @@ cp ~/bin/swFiles/lint.yml .
 bower init
 npm init -f
 git init
-

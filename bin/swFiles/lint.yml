@@ -2,3 +2,5 @@ linters:
     Indentation:
         width: 4
 
+    VendorPrefixes:
+        enabled: false
