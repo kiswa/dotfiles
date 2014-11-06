@@ -85,17 +85,16 @@ gulp.task('images', function() {
 gulp.task('watch', function() {
     gulp.watch(paths.js, function(event) {
         gulp.run(['lint', 'scripts']);
-        console.log('File ' + event.path + ' was ' + event.type '. Running tasks...');
+        console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
     });
     gulp.watch(paths.scss, function(event) {
         gulp.run(['lint', 'styles']);
-        console.log('File ' + event.path + ' was ' + event.type '. Running tasks...');
+        console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
     });
     gulp.watch(paths.html, function(event) {
         gulp.run('html');
-        console.log('File ' + event.path + ' was ' + event.type '. Running tasks...');
+        console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
     });
 });
 
 gulp.task('default', ['clean', 'lint', 'vendor', 'styles', 'scripts', 'html', 'images']);
-
