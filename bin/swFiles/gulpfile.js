@@ -36,7 +36,7 @@ gulp.task('lintJs', function() {
 
 gulp.task('lintScss', function() {
     return gulp.src(paths.scss)
-        .pipe(scssLint());
+        .pipe(scssLint({ config: 'lint.yml' }));
 });
 
 gulp.task('vendor', function() {
