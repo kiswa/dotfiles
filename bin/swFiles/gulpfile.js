@@ -23,7 +23,7 @@ var gulp = require('gulp'),
     };
 
 gulp.task('clean', function() {
-    return del(dist);
+    del(dist);
 });
 
 gulp.task('lint', ['lintJs', 'lintScss']);
