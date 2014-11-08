@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     mainFiles = require('main-bower-files')(),
 
     scssLint = require('gulp-scss-lint'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-ruby-sass'),
     cssPrefixer = require('gulp-autoprefixer'),
     cssMinify = require('gulp-minify-css'),
 
@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 
     src = 'src/',
     dist = 'dist/',
+    bootstrap = 'bower_components/bootstrap-sass-official/assets/stylesheets',
     paths = {
         js: src + 'js/**/*.js',
         scss: src + 'scss/**/*.scss',
@@ -62,7 +63,12 @@ gulp.task('vendor', function() {
 
 gulp.task('styles', function() {
     return gulp.src(paths.scss)
-        .pipe(sass())
+        .pipe(sass({
+            loadPath: [
+                src + 'scss',
+                bootstrap
+            ]
+        }))
         .pipe(cssPrefixer())
         .pipe(concat('styles.css'))
         .pipe(cssMinify())
