@@ -14,6 +14,6 @@ PATH="`ruby -e 'print Gem.user_dir'`/bin:$PATH"
 PATH="/home/kiswa/bin/:$PATH"
 
 EDITOR="/usr/bin/vim"
-
+unset SSH_ASKPASS
 # On a headless VM, use fbterm to allow 256-color display
 #[ -n "$FBTERM" ] && export TERM=fbterm
