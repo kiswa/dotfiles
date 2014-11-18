@@ -4,7 +4,7 @@ mkdir $1 && cd $1 && mkdir -p src/scss && mkdir src/js && mkdir src/images
 
 bower install bootstrap-sass-official fontawesome --save
 
-npm install --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gulp-scss-lint gulp-sass gulp-jshint jshint-stylish gulp-uglify gulp-autoprefixer gulp-filter
+npm install --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gulp-scss-lint gulp-ruby-sass gulp-jshint jshint-stylish gulp-uglify gulp-autoprefixer gulp-filter
 
 cp ~/bin/swFiles/gulpfile.js .
 cp ~/bin/swFiles/.gitignore .
