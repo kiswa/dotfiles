@@ -4,32 +4,33 @@ set nocompatible
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set nobackup        " Do not keep a backup file, use versions instead
-set noswapfile      " Kind of the same as above, no swap file for backups
-set history=250     " Keep 250 lines of command line history
-set ruler           " Show the cursor position all the time
-set showcmd         " Display incomplete commands
-set incsearch       " Do incremental searching
-set hidden          " Hide buffers instead of closing them
-set number          " Show line numbers
-set smartindent     " Use smart indenting
-set tabstop=4       " Tabs are 4 spaces
-set softtabstop=4   " Ditto
-set shiftwidth=4    " Indenting matches tabs
-set expandtab       " Expand tabs into spaces
-set laststatus=2    " Two lines for status (so airline plugin is useful)
-set foldenable      " Enable code folding
-set splitbelow      " Change default split position
-set splitright      " Change default split position
-set encoding=utf-8  " Use UTF-8
-set ignorecase      " Ignore case when searching
-set smartcase       " Unless the search has capitals in it
-set background=dark " Default background color
-set modelines=0     " Don't let files change vim
-set showmatch       " Show matching parenthesis
-set t_Co=256        " Use 256 colors
-syntax on           " Syntax highlighting on
-set hlsearch        " Highlight search results
+set nobackup            " Do not keep a backup file, use versions instead
+set noswapfile          " Kind of the same as above, no swap file for backups
+set history=250         " Keep 250 lines of command line history
+set ruler               " Show the cursor position all the time
+set showcmd             " Display incomplete commands
+set incsearch           " Do incremental searching
+set hidden              " Hide buffers instead of closing them
+set number              " Show line numbers
+set smartindent         " Use smart indenting
+set tabstop=4           " Tabs are 4 spaces
+set softtabstop=4       " Ditto
+set shiftwidth=4        " Indenting matches tabs
+set expandtab           " Expand tabs into spaces
+set laststatus=2        " Two lines for status (so airline plugin is useful)
+set foldenable          " Enable code folding
+set splitbelow          " Change default split position
+set splitright          " Change default split position
+set encoding=utf-8      " Use UTF-8
+set ignorecase          " Ignore case when searching
+set smartcase           " Unless the search has capitals in it
+set background=dark     " Default background color
+set modelines=0         " Don't let files change vim
+set showmatch           " Show matching parenthesis
+set t_Co=256            " Use 256 colors
+syntax on               " Syntax highlighting on
+set hlsearch            " Highlight search results
+set nrformats=hex,alpha " Numeric commands increment hex and alpha (not octal)
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
