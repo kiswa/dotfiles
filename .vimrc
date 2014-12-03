@@ -31,6 +31,7 @@ set t_Co=256            " Use 256 colors
 syntax on               " Syntax highlighting on
 set hlsearch            " Highlight search results
 set nrformats=hex,alpha " Numeric commands increment hex and alpha (not octal)
+set wildmenu            " Display autocomplete options
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -38,6 +39,12 @@ map Q gq
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
+
+" Remap buffer commands for ease of use
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 
 " In many terminal emulators the mouse works just fine.
 if has('mouse')
@@ -58,6 +65,7 @@ Plugin 'AutoComplPop'            " Auto-complete popups
 Plugin 'chriskempson/base16-vim' " Base16 color schemes
 Plugin 'CSApprox'                " Make GUI color schemes work in terminal Vim
 Plugin 'mattn/emmet-vim'         " Emmet implementation for vim
+Plugin 'tomtom/tcomment_vim'     " Language-aware commenting of text
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
