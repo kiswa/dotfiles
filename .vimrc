@@ -29,7 +29,6 @@ set modelines=0         " Don't let files change vim
 set showmatch           " Show matching parenthesis
 set t_Co=256            " Use 256 colors
 syntax on               " Syntax highlighting on
-set hlsearch            " Highlight search results
 set nrformats=hex,alpha " Numeric commands increment hex and alpha (not octal)
 set wildmenu            " Display autocomplete options
 
@@ -66,6 +65,8 @@ Plugin 'chriskempson/base16-vim' " Base16 color schemes
 Plugin 'CSApprox'                " Make GUI color schemes work in terminal Vim
 Plugin 'mattn/emmet-vim'         " Emmet implementation for vim
 Plugin 'tomtom/tcomment_vim'     " Language-aware commenting of text
+Plugin 'tpope/vim-fugitive'      " Git wrapper
+Plugin 'mhinz/vim-signify'       " Git status indicator
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
