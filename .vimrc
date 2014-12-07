@@ -39,12 +39,6 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-" Remap buffer commands for ease of use
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
-
 " In many terminal emulators the mouse works just fine.
 if has('mouse')
   set mouse=a
@@ -67,6 +61,7 @@ Plugin 'mattn/emmet-vim'         " Emmet implementation for vim
 Plugin 'tomtom/tcomment_vim'     " Language-aware commenting of text
 Plugin 'tpope/vim-fugitive'      " Git wrapper
 Plugin 'mhinz/vim-signify'       " Git status indicator
+Plugin 'tpope/vim-unimpaired'    " Handy bracket mappings
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
