@@ -28,9 +28,9 @@ set background=dark     " Default background color
 set modelines=0         " Don't let files change vim
 set showmatch           " Show matching parenthesis
 set t_Co=256            " Use 256 colors
-syntax on               " Syntax highlighting on
 set nrformats=hex,alpha " Numeric commands increment hex and alpha (not octal)
 set wildmenu            " Display autocomplete options
+syntax on               " Syntax highlighting on
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -44,37 +44,56 @@ if has('mouse')
   set mouse=a
 endif
 
-filetype off " Prep for Vundle
-
+" Prep for Vundle
+filetype off
 " Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'       " The Vim Bundle Manager manages itself
-Plugin 'kien/ctrlp.vim'          " Fuzzy finder
-Plugin 'Markdown'                " Markdown syntax highlighting
-Plugin 'bling/vim-airline'       " Status and tabline
-Plugin 'AutoComplPop'            " Auto-complete popups
-Plugin 'chriskempson/base16-vim' " Base16 color schemes
-Plugin 'CSApprox'                " Make GUI color schemes work in terminal Vim
-Plugin 'mattn/emmet-vim'         " Emmet implementation for vim
-Plugin 'tomtom/tcomment_vim'     " Language-aware commenting of text
-Plugin 'tpope/vim-fugitive'      " Git wrapper
-Plugin 'mhinz/vim-signify'       " Git status indicator
-Plugin 'tpope/vim-unimpaired'    " Handy bracket mappings
+" The Vim Bundle Manager manages itself
+Plugin 'gmarik/Vundle.vim'
+" Fuzzy finder
+Plugin 'kien/ctrlp.vim'
+" Markdown syntax highlighting
+Plugin 'Markdown'
+" Status and tabline
+Plugin 'bling/vim-airline'
+" Auto-complete popups
+Plugin 'AutoComplPop'
+" Base16 color schemes
+Plugin 'chriskempson/base16-vim'
+" Make GUI color schemes work in terminal Vim
+Plugin 'CSApprox'
+" Emmet implementation for vim
+Plugin 'mattn/emmet-vim'
+" Language-aware commenting of text
+Plugin 'tomtom/tcomment_vim'
+" Git wrapper
+Plugin 'tpope/vim-fugitive'
+" Git status indicator
+Plugin 'mhinz/vim-signify'
+" Handy bracket mappings
+Plugin 'tpope/vim-unimpaired'
+" Tree explorer
+Plugin 'scrooloose/nerdtree'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
 
+" Show hidden files in NERDTree
+let NERDTreeShowHidden = 1
+" Map Ctrl+n to toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
 call vundle#end()
 
+" This must come after vundle#end.
 colorscheme base16-eighties
 
-" Only do this part when compiled with support for autocommands.
+" Only do this when compiled with support for autocommands.
 if has("autocmd")
   filetype plugin indent on
-
-    " Put these in an autocmd group, so that we can delete them easily.
+  " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
 
@@ -86,9 +105,26 @@ if has("autocmd")
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+  " Allow closing vim when only window open is NERDTree.
+  autocmd BufEnter *
+    \ if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") |
+    \   q |
+    \ endif
+
+  " Strip trailing whitespace on save and maintain cursor position.
+  fun! StripTrailingWhitespace()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+  endfun
+  autocmd BufWritePre * :call StripTrailingWhitespace()
+
   augroup END
 else
-  set autoindent    " Set autoindenting on
+  " Set autoindenting on
+  set autoindent
 endif
 
 " Convenient command to see the difference between the current buffer and the
