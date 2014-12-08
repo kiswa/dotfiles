@@ -88,7 +88,7 @@ if has("autocmd")
     \ endif
   augroup END
 else
-  set autoindenting    " Set autoindenting on
+  set autoindent    " Set autoindenting on
 endif
 
 " Convenient command to see the difference between the current buffer and the
