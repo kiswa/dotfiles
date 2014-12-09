@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $# -eq 0 ]] ; then
+    echo 'No project name provided, exiting.'
+    exit 0
+fi
+
 mkdir $1 && cd $1 && mkdir -p src/scss && mkdir src/js && mkdir src/images
 
 bower install bootstrap-sass-official fontawesome --save
