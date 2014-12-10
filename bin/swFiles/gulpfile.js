@@ -67,7 +67,7 @@ gulp.task('minify', function() {
         .pipe(cssMinify())
         .pipe(gulp.dest(dist + 'lib/'));
     gulp.src(dist + 'lib/vendor.js')
-        .pipe(jsMinify())
+        .pipe(jsMinify({ preserveComments: 'some'}))
         .pipe(gulp.dest(dist + 'lib/'));
 
     // Minify project styles and scripts
@@ -75,7 +75,7 @@ gulp.task('minify', function() {
         .pipe(cssMinify())
         .pipe(gulp.dest(dist + 'css/'));
     gulp.src(dist + 'js/app.js')
-        .pipe(jsMinify())
+        .pipe(jsMinify({ preserveComments: 'some'}))
         .pipe(gulp.dest(dist + 'js/'));
 });
 
@@ -84,14 +84,12 @@ gulp.task('styles', function() {
         .pipe(sass())
         .pipe(cssPrefixer())
         .pipe(concat('styles.css'))
-        .pipe(cssMinify())
         .pipe(gulp.dest(dist + 'css/'));
 });
 
 gulp.task('scripts', function() {
     return gulp.src(paths.js)
         .pipe(concat('app.js'))
-        .pipe(jsMinify())
         .pipe(gulp.dest(dist + 'js/'));
 });
 
