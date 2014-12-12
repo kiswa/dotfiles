@@ -1,0 +1,75 @@
+# Static and Variable Values
+
+alignment middle_right
+background yes
+border_width 1
+cpu_avg_samples 2
+default_color eee
+default_outline_color white
+default_shade_color 333
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades yes
+use_xft yes
+xftfont Inconsolata:size=12
+xftalpha 0.8
+gap_x 10
+gap_y 10
+minimum_size 5 755
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_type conky
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_argb_value 255
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer right
+show_graph_scale no
+show_graph_range no
+double_buffer yes
+
+lua_load /home/kiswa/bin/conky_bg.lua
+lua_draw_hook_pre draw_bg
+
+TEXT
+${alignr}${exec whoami} @ $nodename
+${alignr}$sysname $kernel $machine$color
+$hr
+${color bbb}Uptime:$color $uptime_short
+${color bbb}RAM Usage:$color $memperc%${goto 140}${membar 4}
+${color bbb}CPU Usage:$color $cpu%${goto 140}${cpubar 4}
+${color grey}${cpugraph cpu0 30,54 29E6C6 E62949 -t} ${cpugraph cpu1 30,54 29E6C6 E62949 -t} \
+${cpugraph cpu2 30,54 29E6C6 E62949 -t} ${cpugraph cpu3 30,54 29E6C6 E62949 -t}
+${cpugraph cpu4 30,54 29E6C6 E62949 -t} ${cpugraph cpu5 30,54 29E6C6 E62949 -t} \
+${cpugraph cpu6 30,54 29E6C6 E62949 -t} ${cpugraph cpu7 30,54 29E6C6 E62949 -t}
+${alignc}${color bbb}CPU Frequency:$color ${freq_g}GHz
+${alignc}${color bbb}Processes:$color $processes${color bbb}Running:$color $running_processes
+${alignc}${color bbb}Battery:$color ${battery BAT1}
+$stippled_hr
+${color bbb}File System Usage:$color
+ / ${goto 110}${fs_used /}/${fs_size /}
+ ${fs_bar 6,190 /} ${alignr}${fs_used_perc /}%
+ /home ${goto 110}${fs_used /home}/${fs_size /home}
+ ${fs_bar 6,190 /home} ${alignr}${fs_used_perc /home}%
+ /mnt/data ${goto 110}${fs_used /mnt/data}/${fs_size /mnt/data}
+ ${fs_bar 6,190 /mnt/data} ${alignr}${fs_used_perc /mnt/data}%
+$stippled_hr
+${color bbb}Networking:$color
+ Up: ${upspeed wlp4s0}${goto 130}Down: ${downspeed wlp4s0}
+ ${downspeedgraph wlp4s0 20,90 29E6C6 E62949 -t}${goto 130}\
+${upspeedgraph wlp4s0 20,90 29E6C6 E62949 -t}$color
+$stippled_hr
+${alignc}${color bbb}Desktop$color ${desktop} ${color bbb}of$color ${desktop_number}
+#Update weather every 5 minutes
+${alignc}${color bbb}${texeci 300 python /home/kiswa/bin/weather.py 30004}
+$color$stippled_hr
+#update package status every minute
+$alignc${color bbb}${texeci 60 python /home/kiswa/bin/notify.py}
+$color$hr
