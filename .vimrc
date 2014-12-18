@@ -52,6 +52,7 @@ call vundle#begin()
 
 " The Vim Bundle Manager manages itself
 Plugin 'gmarik/Vundle.vim'
+
 " Fuzzy finder
 Plugin 'kien/ctrlp.vim'
 " Markdown syntax highlighting
@@ -76,14 +77,18 @@ Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-unimpaired'
 " Tree explorer
 Plugin 'scrooloose/nerdtree'
+" Scratch buffer
+Plugin 'mtth/scratch.vim'
+" Multiple cursors
+Plugin 'terryma/vim-multiple-cursors'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
 
 " Show hidden files in NERDTree
 let NERDTreeShowHidden = 1
-" Map Ctrl+n to toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
+" Map Alt+a to toggle NERDTree
+map <Esc>a :NERDTreeToggle<CR>
 
 call vundle#end()
 
