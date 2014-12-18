@@ -81,6 +81,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'mtth/scratch.vim'
 " Multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
+" JSHint linter - Requires Node and JSHint: npm install -g jshint
+Plugin 'Shutnik/jshint2.vim'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
