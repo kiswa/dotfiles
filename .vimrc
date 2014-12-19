@@ -83,6 +83,8 @@ Plugin 'mtth/scratch.vim'
 Plugin 'terryma/vim-multiple-cursors'
 " JSHint linter - Requires Node and JSHint: npm install -g jshint
 Plugin 'Shutnik/jshint2.vim'
+" Work with surrounding tags
+Plugin 'tpope/vim-surround'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
