@@ -59,8 +59,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Markdown'
 " Status and tabline
 Plugin 'bling/vim-airline'
-" Auto-complete popups
-Plugin 'AutoComplPop'
+" Auto-completion with cache
+Plugin 'Shougo/neocomplete.vim'
 " Base16 color schemes
 Plugin 'chriskempson/base16-vim'
 " Make GUI color schemes work in terminal Vim
@@ -85,9 +85,17 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Shutnik/jshint2.vim'
 " Work with surrounding tags
 Plugin 'tpope/vim-surround'
+" Line numbers toggling by mode
+Plugin 'myusuf3/numbers.vim'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
+
+" neocomplete settings
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Show hidden files in NERDTree
 let NERDTreeShowHidden = 1
@@ -129,6 +137,12 @@ if has("autocmd")
     call cursor(l, c)
   endfun
   autocmd BufWritePre * :call StripTrailingWhitespace()
+
+  " Autocmd settings for neocomplete
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
   augroup END
 else
