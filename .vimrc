@@ -18,7 +18,8 @@ set softtabstop=4       " Ditto
 set shiftwidth=4        " Indenting matches tabs
 set expandtab           " Expand tabs into spaces
 set laststatus=2        " Two lines for status (so airline plugin is useful)
-set foldenable          " Enable code folding
+set foldmethod=indent   " Use indent code folding
+set foldlevelstart=20   " Don't indent files on open
 set splitbelow          " Change default split position
 set splitright          " Change default split position
 set encoding=utf-8      " Use UTF-8
