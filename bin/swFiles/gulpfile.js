@@ -81,7 +81,7 @@ gulp.task('minify', function() {
 
 gulp.task('styles', function() {
     return gulp.src(paths.scss)
-        .pipe(sass())
+        .pipe(sass({ includePaths: [bootstrap] }))
         .pipe(cssPrefixer())
         .pipe(concat('styles.css'))
         .pipe(gulp.dest(dist + 'css/'));
