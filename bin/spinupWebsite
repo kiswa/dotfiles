@@ -14,6 +14,7 @@ npm install --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gul
 cp ~/bin/swFiles/gulpfile.js .
 cp ~/bin/swFiles/.gitignore .
 cp ~/bin/swFiles/lint.yml .
+cp ~/bin/swFiles/main.scss ./src/scss/
 
 bower init
 npm init -f
