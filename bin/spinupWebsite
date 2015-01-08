@@ -7,15 +7,27 @@ fi
 
 mkdir $1 && cd $1 && mkdir -p src/scss && mkdir src/js && mkdir src/images
 
-bower install bootstrap-sass-official fontawesome --save
+cp ~/bin/swFiles/* .
 
-npm install --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gulp-scss-lint gulp-sass gulp-jshint jshint-stylish gulp-uglify gulp-autoprefixer gulp-filter gulp-imagemin
+echo 'Bower Initialization'
+bower init
+
+echo ''
+echo 'Node Initialization'
+npm init -y
+
+echo ''
+echo 'Installing Bower Components...'
+bower install bootstrap-sass-official fontawesome --save --quiet
+
+echo ''
+echo 'Installing Node Modules...'
+npm install --silent --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gulp-scss-lint gulp-sass gulp-jshint jshint-stylish gulp-uglify gulp-autoprefixer gulp-filter gulp-imagemin
 
 cp ~/bin/swFiles/gulpfile.js .
 cp ~/bin/swFiles/.gitignore .
 cp ~/bin/swFiles/lint.yml .
-cp ~/bin/swFiles/main.scss ./src/scss/
+cp ~/bin/swFiles/* ./src/scss/
 
-bower init
-npm init -f
+echo ''
 git init
