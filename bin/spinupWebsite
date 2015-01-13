@@ -1,33 +1,51 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]] ; then
-    echo 'No project name provided, exiting.'
+    echo "Usage:"
+    echo "  $0 site-name [framework]"
+    echo "    Where [framework] defaults to Bootstrap,"
+    echo "    but may also be Bourbon."
     exit 0
 fi
 
+if [[ $# -eq 1 ]] ; then
+    echo "No framework specified, defaulting to Bootstrap."
+    FRAMEWORK="Bootstrap"
+else
+    FRAMEWORK=$2
+fi
+
+
 mkdir $1 && cd $1 && mkdir -p src/scss && mkdir src/js && mkdir src/images
 
-cp ~/bin/swFiles/* .
+cp ~/bin/swFiles/.gitignore .
+cp ~/bin/swFiles/bower.json .
+cp ~/bin/swFiles/lint.yml .
+cp ~/bin/swFiles/package.json .
 
-echo 'Bower Initialization'
+echo "Bower Initialization"
 bower init
 
-echo ''
-echo 'Node Initialization'
+echo ""
+echo "Node Initialization"
 npm init -y
 
-echo ''
-echo 'Installing Bower Components...'
-bower install bootstrap-sass-official fontawesome --save --quiet
+echo ""
+echo "Installing Bower Components..."
+if [ "$FRAMEWORK" == "Bootstrap" ] ; then
+    bower install bootstrap-sass-official fontawesome --save --quiet
+    cp ~/bin/swFiles/bootstrap/gulpfile.js .
+    cp ~/bin/swFiles/bootstrap/*.scss src/scss
+fi
+if [ "$FRAMEWORK" == "Bourbon" ] ; then
+    bower install bourbon neat fontawesome --save --quiet
+    cp ~/bin/swFiles/bourbon/gulpfile.js .
+    cp ~/bin/swFiles/bourbon/*.scss src/scss
+fi
 
-echo ''
-echo 'Installing Node Modules...'
+echo ""
+echo "Installing Node Modules..."
 npm install --silent --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gulp-scss-lint gulp-sass gulp-jshint jshint-stylish gulp-uglify gulp-autoprefixer gulp-filter gulp-imagemin
 
-cp ~/bin/swFiles/gulpfile.js .
-cp ~/bin/swFiles/.gitignore .
-cp ~/bin/swFiles/lint.yml .
-cp ~/bin/swFiles/* ./src/scss/
-
-echo ''
+echo ""
 git init
