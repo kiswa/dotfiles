@@ -55,7 +55,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Fuzzy finder
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " Markdown syntax highlighting
 Plugin 'Markdown'
 " Status and tabline
