@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     mainFiles = require('main-bower-files')(),
 
     scssLint = require('gulp-scss-lint'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-ruby-sass'),
     cssPrefixer = require('gulp-autoprefixer'),
     cssMinify = require('gulp-minify-css'),
 
@@ -81,7 +81,11 @@ gulp.task('minify', function() {
 
 gulp.task('styles', function() {
     return gulp.src(paths.scss)
-        .pipe(sass({ includePaths: [bootstrap] }))
+        .pipe(sass({
+            precision: 10,
+            loadPath: [bootstrap],
+            "sourcemap=none": true
+        }))
         .pipe(cssPrefixer())
         .pipe(concat('styles.css'))
         .pipe(gulp.dest(dist + 'css/'));

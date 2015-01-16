@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     mainFiles = require('main-bower-files')(),
 
     scssLint = require('gulp-scss-lint'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-ruby-sass'),
     cssPrefixer = require('gulp-autoprefixer'),
     cssMinify = require('gulp-minify-css'),
 
@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 
     src = 'src/',
     dist = 'dist/',
-    bourbon 'bower_components/bourbon/app/assets/stylesheets',
+    bourbon = 'bower_components/bourbon/app/assets/stylesheets',
     neat = 'bower_components/neat/app/assets/stylesheets',
     paths = {
         js: src + 'js/**/*.js',
@@ -82,7 +82,11 @@ gulp.task('minify', function() {
 
 gulp.task('styles', function() {
     return gulp.src(paths.scss)
-        .pipe(sass({ includePaths: [bourbon, neat] }))
+        .pipe(sass({
+            precision: 10,
+            loadPath: [bourbon, neat],
+            "sourcemap=none": true
+        }))
         .pipe(cssPrefixer())
         .pipe(concat('styles.css'))
         .pipe(gulp.dest(dist + 'css/'));

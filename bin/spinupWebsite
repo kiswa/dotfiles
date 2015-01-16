@@ -38,14 +38,14 @@ if [ "$FRAMEWORK" == "Bootstrap" ] ; then
     cp ~/bin/swFiles/bootstrap/*.scss src/scss
 fi
 if [ "$FRAMEWORK" == "Bourbon" ] ; then
-    bower install bourbon neat fontawesome --save --quiet
+    bower install normalize.css bourbon neat fontawesome --save --quiet
     cp ~/bin/swFiles/bourbon/gulpfile.js .
     cp ~/bin/swFiles/bourbon/*.scss src/scss
 fi
 
 echo ""
 echo "Installing Node Modules..."
-npm install --silent --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gulp-scss-lint gulp-sass gulp-jshint jshint-stylish gulp-uglify gulp-autoprefixer gulp-filter gulp-imagemin
+npm install --silent --save-dev del gulp main-bower-files gulp-concat gulp-minify-css gulp-scss-lint gulp-ruby-sass gulp-jshint jshint-stylish gulp-uglify gulp-autoprefixer gulp-filter gulp-imagemin
 
 echo ""
 git init
