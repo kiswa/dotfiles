@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     del = require('del'),
     concat = require('gulp-concat'),
     filter = require('gulp-filter'),
-    mainFiles = require('main-bower-files')(),
+    mainFiles = require('main-bower-files'),
 
     scssLint = require('gulp-scss-lint'),
     sass = require('gulp-ruby-sass'),
@@ -44,12 +44,12 @@ gulp.task('lintScss', function() {
 });
 
 gulp.task('vendor', function() {
-    if (!mainFiles.length) { return; }
+    if (!mainFiles().length) { return; }
 
     var jsFilter = filter('**/*.js'),
         cssFilter = filter('**/*.css');
 
-    return gulp.src(mainFiles)
+    return gulp.src(mainFiles())
         .pipe(jsFilter)
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest(dist + 'lib/'))
