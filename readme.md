@@ -8,7 +8,7 @@ A few files for setting up bash and Vim in different environments, as well as so
     * Frameworks available: __None__, __Bootstrap (SASS)__, or __Bourbon__ & __Neat__.
       * Commands: `spinupWebsite newSiteName`, `spinupWebsite newSiteName Bootstrap`, and `spinupWebsite newSiteName Bourbon` respectively.
     * Uses __Bower__ and __npm__ to load everything needed, __Ruby sass__ for SASS compiling, and __Gulp__ for building.
-    * Includes __fb-flo__ for live reloading.
+    * Includes __fb-flo__ for live reloading (runs as part of `gulp watch` task).
   * `conky_bg.lua`, `notify.py`, and `weather.py` are all used by conky as configured in `../.conkyrc`.
   * `pkgBackup` generates a list of all installed packages (for an Arch install) to make VM setups easier.
  * `.bashrc` includes `\home\$USER\bin` and __Ruby__ in the path, and customizes the command line.
