@@ -15,6 +15,10 @@ var gulp = require('gulp'),
 
     imageMin = require('gulp-imagemin'),
 
+    node,
+    spawn = require('child_process').spawn,
+    exec = require('child_process').exec,
+
     src = 'src/',
     dist = 'dist/',
     bourbon = 'bower_components/bourbon/app/assets/stylesheets',
@@ -23,7 +27,9 @@ var gulp = require('gulp'),
         js: src + 'js/**/*.js',
         scss: src + 'scss/**/*.scss',
         images: src + 'images/**/*.*',
-        html: src + '**/*.html'
+        html: src + '**/*.html',
+        bower: 'bower_components/**/*.*',
+        scssMain: src + 'scss/main.scss'
     };
 
 gulp.task('clean', function() {
@@ -44,7 +50,11 @@ gulp.task('lintScss', function() {
 });
 
 gulp.task('vendor', function() {
-    if (!mainFiles().length) { return; }
+    try {
+        if (!mainFiles().length) { return; }
+    } catch (e) {
+        return;
+    }
 
     var jsFilter = filter('**/*.js'),
         cssFilter = filter('**/*.css');
@@ -81,14 +91,13 @@ gulp.task('minify', function() {
 });
 
 gulp.task('styles', function() {
-    return gulp.src(paths.scss)
-        .pipe(sass({
-            precision: 10,
-            loadPath: [bourbon, neat],
-            "sourcemap=none": true
-        }))
-        .pipe(cssPrefixer())
+    return sass(paths.scssMain,
+            {
+                precision: 10,
+                loadPath: [bourbon, neat]
+            })
         .pipe(concat('styles.css'))
+        .pipe(cssPrefixer())
         .pipe(gulp.dest(dist + 'css/'));
 });
 
@@ -109,20 +118,52 @@ gulp.task('images', function() {
         .pipe(gulp.dest(dist + 'images/'));
 });
 
+gulp.task('fbFlo', ['cleanupFbFlo'], function() {
+    if (node) {
+        node.kill();
+    }
+
+    node = spawn('node', ['flo.js'], {stdio: 'inherit'});
+    node.on('close', function() {
+        console.log('Exiting fb-flo.');
+    });
+});
+
+gulp.task('cleanupFbFlo', function() {
+    var fbFloRegex = /node\s_(\d+)\s/g,
+        fbFloPs = exec('ps aux | grep "node flo.js"');
+
+    fbFloPs.stdout.on('data', function(data) {
+        data = data.split('\n');
+        if (data) {
+            var tmp;
+            for (var i = 0; i < data.length; ++i) {
+                tmp = data[i].split('  ');
+                exec('kill -9 ' + tmp[2]);
+                console.log('Killed orphaned fb-flo process.');
+            }
+        }
+    });
+});
+
 gulp.task('watch', function() {
     var watchJs = gulp.watch(paths.js, ['lintJs', 'scripts']),
         watchScss = gulp.watch(paths.scss, ['lintScss', 'styles']),
         watchHtml = gulp.watch(paths.html, ['html']),
         watchImages = gulp.watch(paths.images, ['images']),
+        watchVendor = gulp.watch(paths.bower, ['vendor']),
 
         onChanged = function(event) {
             console.log('File ' + event.path + ' was ' + event.type + '. Running tasks...');
         };
 
+    gulp.start('fbFlo');
+
     watchJs.on('change', onChanged);
     watchScss.on('change', onChanged);
     watchHtml.on('change', onChanged);
     watchImages.on('change', onChanged);
+    watchVendor.on('change', onChanged);
 });
 
 gulp.task('default', ['clean', 'lint', 'vendor', 'styles', 'scripts', 'html', 'images']);

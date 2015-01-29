@@ -13,12 +13,15 @@ else
     FRAMEWORK=$2
 fi
 
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 mkdir $1 && cd $1 && mkdir -p src/scss && mkdir src/js && mkdir src/images
 
-cp ~/bin/swFiles/.gitignore .
-cp ~/bin/swFiles/bower.json .
-cp ~/bin/swFiles/lint.yml .
-cp ~/bin/swFiles/package.json .
+cp $DIR/swFiles/.gitignore .
+cp $DIR/swFiles/bower.json .
+cp $DIR/swFiles/lint.yml .
+cp $DIR/swFiles/package.json .
+cp $DIR/swFiles/flo.js .
 
 echo "Bower Initialization"
 bower init
@@ -27,20 +30,23 @@ echo ""
 echo "Node Initialization"
 npm init -y
 
-echo ""
-echo "Installing Bower Components..."
 if [ "$FRAMEWORK" == "None" ] ; then
-    cp ~/bin/swFiles/none/gulpfile.js .
+    cp $DIR/swFiles/none/gulpfile.js .
+    cp $DIR/swFiles/none/main.scss src/scss
 fi
 if [ "$FRAMEWORK" == "Bootstrap" ] ; then
+    echo ""
+    echo "Installing Bower Components..."
     bower install bootstrap-sass-official fontawesome --save --quiet
-    cp ~/bin/swFiles/bootstrap/gulpfile.js .
-    cp ~/bin/swFiles/bootstrap/*.scss src/scss
+    cp $DIR/swFiles/bootstrap/gulpfile.js .
+    cp $DIR/swFiles/bootstrap/*.scss src/scss
 fi
 if [ "$FRAMEWORK" == "Bourbon" ] ; then
+    echo ""
+    echo "Installing Bower Components..."
     bower install normalize.css bourbon neat fontawesome --save --quiet
-    cp ~/bin/swFiles/bourbon/gulpfile.js .
-    cp ~/bin/swFiles/bourbon/*.scss src/scss
+    cp $DIR/swFiles/bourbon/gulpfile.js .
+    cp $DIR/swFiles/bourbon/*.scss src/scss
 fi
 
 echo ""
