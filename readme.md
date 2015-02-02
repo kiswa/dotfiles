@@ -1,6 +1,6 @@
 ## Dotfiles
 
-A few files for setting up bash and Vim in different environments, as well as some X environment files. Also includes a couple of scripts that make a few things easier.
+A few files for setting up bash and Vim in different environments. Also includes a couple of scripts that make a few things easier.
 
  * `bin`
   * `fixShareCopy` resets file and directory permissions recursively for a directory copied into a VM from a host share (also useful to just set file and directory permissions to sane defaults). Use it as `fixShareCopy copiedDirName`.
