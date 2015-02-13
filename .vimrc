@@ -108,6 +108,9 @@ call vundle#end()
 " This must come after vundle#end.
 colorscheme base16-eighties
 
+" Map Ctrl+z to close a buffer without closing the split window
+nnoremap <C-z> :bp\|bd #<CR>
+
 " Only do this when compiled with support for autocommands.
 if has("autocmd")
   filetype plugin indent on
