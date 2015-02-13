@@ -28,7 +28,6 @@ set smartcase           " Unless the search has capitals in it
 set background=dark     " Default background color
 set modelines=0         " Don't let files change vim
 set showmatch           " Show matching parenthesis
-set t_Co=256            " Use 256 colors
 set nrformats=hex,alpha " Numeric commands increment hex and alpha (not octal)
 set wildmenu            " Display autocomplete options
 syntax on               " Syntax highlighting on
