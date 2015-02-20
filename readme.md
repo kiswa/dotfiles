@@ -11,6 +11,6 @@ A few files for setting up bash and Vim in different environments. Also includes
     * Includes __fb-flo__ for live reloading (runs as part of `gulp watch` task).
   * `conky_bg.lua`, `notify.py`, and `weather.py` are all used by conky as configured in `../.conkyrc`.
   * `pkgBackup` generates a list of all installed packages (for an Arch install) to make VM setups easier.
- * `.bashrc` includes `\home\$USER\bin` and __Ruby__ in the path, and customizes the command line.
+ * `.bashrc` includes `\home\$USER\bin` and __Ruby__ in the path, and customizes the command line (to include displaying active branch in git repos).
  * `.conkyrc` provides a configuration setup for [conky](https://wiki.archlinux.org/index.php/conky) which relies on files in `bin`.
  * `.vimrc` sets up Vim with several useful things, just open Vim and run `:PluginInstall` to get all the plugins loaded (Assumes [Vundle](https://github.com/gmarik/Vundle.vim) is installed).
