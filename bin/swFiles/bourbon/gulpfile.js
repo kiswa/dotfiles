@@ -1,8 +1,7 @@
 var gulp = require('gulp'),
     del = require('del'),
     concat = require('gulp-concat'),
-    filter = require('gulp-filter'),
-    mainFiles = require('main-bower-files'),
+    mainFiles = require('bower-files'),
 
     scssLint = require('gulp-scss-lint'),
     sass = require('gulp-ruby-sass'),
@@ -50,26 +49,16 @@ gulp.task('lintScss', function() {
 });
 
 gulp.task('vendor', function() {
-    try {
-        if (!mainFiles().length) { return; }
-    } catch (e) {
-        return;
-    }
+    gulp.src(mainFiles().ext('js').files)
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest(dist + 'lib/'));
 
-    var jsFilter = filter('**/*.js'),
-        cssFilter = filter('**/*.css');
+    gulp.src(mainFiles().ext('css').files)
+    .pipe(concat('vendor.css'))
+    .pipe(gulp.dest(dist + 'lib/'));
 
-    return gulp.src(mainFiles())
-        .pipe(jsFilter)
-        .pipe(concat('vendor.js'))
-        .pipe(gulp.dest(dist + 'lib/'))
-        .pipe(jsFilter.restore())
-        .pipe(cssFilter)
-        .pipe(concat('vendor.css'))
-        .pipe(gulp.dest(dist + 'lib/'))
-        .pipe(cssFilter.restore())
-        .pipe(filter('**/fontawesome-webfont.*'))
-        .pipe(gulp.dest(dist + 'fonts/'));
+    gulp.src(mainFiles().ext(['eot', 'woff', 'ttf', 'svg']).files)
+    .pipe(gulp.dest(dist + 'fonts/'));
 });
 
 gulp.task('minify', function() {
