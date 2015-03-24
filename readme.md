@@ -14,3 +14,5 @@ A few files for setting up bash and Vim in different environments. Also includes
  * `.bashrc` includes `\home\$USER\bin` and __Ruby__ in the path, and customizes the command line (to include displaying active branch in git repos).
  * `.conkyrc` provides a configuration setup for [conky](https://wiki.archlinux.org/index.php/conky) which relies on files in `bin`.
  * `.vimrc` sets up Vim with several useful things, just open Vim and run `:PluginInstall` to get all the plugins loaded (Assumes [Vundle](https://github.com/gmarik/Vundle.vim) is installed).
+
+ To use everything, just run `install.sh`. To selectively use things, it's as easy as copying the files you want to the chosen destination.
