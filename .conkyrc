@@ -58,8 +58,8 @@ ${color bbb}File System Usage:$color
 $stippled_hr
 ${color bbb}Networking:$color
  Up: ${upspeed wlp2s0}${goto 130}Down: ${downspeed wlp2s0}
- ${downspeedgraph wlp4s0 20,90 29E6C6 E62949 -t}${goto 130}\
-${upspeedgraph wlp4s0 20,90 29E6C6 E62949 -t}$color
+ ${downspeedgraph wlp2s0 20,90 29E6C6 E62949 -t}${goto 130}\
+${upspeedgraph wlp2s0 20,90 29E6C6 E62949 -t}$color
 $stippled_hr
 ${alignc}${color bbb}Desktop$color ${desktop} ${color bbb}of$color ${desktop_number}
 #Update weather every 5 minutes
