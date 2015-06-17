@@ -5,10 +5,11 @@ $visual-grid-color: #f00;
 $visual-grid-index: front;
 $visual-grid-opacity: .1;
 
-$max-width: em(1088);
+$max-width: em(968);
 
-$mobile: new-breakpoint(min-width em(320) 4);
-$tablet: new-breakpoint(min-width 720px 8);
-$desktop: new-breakpoint(min-width em(960) 12);
-$large-desktop: new-breakpoint(min-width em(1050) 16);
+$first-break: em(480);
+$second-break: em(768);
 
+$small: new-breakpoint(max-width $first-break 6);
+$medium: new-breakpoint(min-width $first-break max-width $second-break 12);
+$large: new-breakpoint(min-width $second-break 18);
