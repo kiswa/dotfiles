@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     del = require('del'),
     concat = require('gulp-concat'),
     mainFiles = require('bower-files'),
+    merge = require('merge-stream'),
 
     scssLint = require('gulp-scss-lint'),
     sass = require('gulp-ruby-sass'),
@@ -32,7 +33,7 @@ var gulp = require('gulp'),
     };
 
 gulp.task('clean', function() {
-    del(dist);
+    return del(dist);
 });
 
 gulp.task('lint', ['lintJs', 'lintScss']);
@@ -49,34 +50,45 @@ gulp.task('lintScss', function() {
 });
 
 gulp.task('vendor', function() {
-    gulp.src(mainFiles().ext('js').files)
+    var js = gulp.src(mainFiles().ext('js').files)
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest(dist + 'lib/'));
 
-    gulp.src(mainFiles().ext('css').files)
+    var css = gulp.src(mainFiles().ext('css').files)
     .pipe(concat('vendor.css'))
     .pipe(gulp.dest(dist + 'lib/'));
 
-    gulp.src(mainFiles().ext(['eot', 'woff', 'ttf', 'svg']).files)
+    var fonts = gulp.src(mainFiles().ext(['eot', 'woff', 'ttf', 'svg']).files)
     .pipe(gulp.dest(dist + 'fonts/'));
+
+    var merged = merge(js, css);
+    merged.add(fonts);
+
+    return merged;
 });
 
 gulp.task('minify', function() {
     // Minify vendor.js and vendor.css
-    gulp.src(dist + 'lib/vendor.css')
+    var vcss = gulp.src(dist + 'lib/vendor.css')
         .pipe(cssMinify())
         .pipe(gulp.dest(dist + 'lib/'));
-    gulp.src(dist + 'lib/vendor.js')
+    var vjs = gulp.src(dist + 'lib/vendor.js')
         .pipe(jsMinify({ preserveComments: 'some'}))
         .pipe(gulp.dest(dist + 'lib/'));
 
     // Minify project styles and scripts
-    gulp.src(dist + 'css/styles.css')
+    var css = gulp.src(dist + 'css/styles.css')
         .pipe(cssMinify())
         .pipe(gulp.dest(dist + 'css/'));
-    gulp.src(dist + 'js/app.js')
+    var js = gulp.src(dist + 'js/app.js')
         .pipe(jsMinify({ preserveComments: 'some'}))
         .pipe(gulp.dest(dist + 'js/'));
+
+    var merged = merge(vcss, vjs);
+    merged.add(css);
+    merged.add(js);
+
+    return merge;
 });
 
 gulp.task('styles', function() {
@@ -155,4 +167,4 @@ gulp.task('watch', function() {
     watchVendor.on('change', onChanged);
 });
 
-gulp.task('default', ['clean', 'lint', 'vendor', 'styles', 'scripts', 'html', 'images']);
+gulp.task('default', ['lint', 'vendor', 'styles', 'scripts', 'html', 'images']);
