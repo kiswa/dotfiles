@@ -87,6 +87,8 @@ Plugin 'Shutnik/jshint2.vim'
 Plugin 'tpope/vim-surround'
 " Line numbers toggling by mode
 Plugin 'myusuf3/numbers.vim'
+" HTML5 and Inline SVG support
+Plugin 'othree/html5.vim'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
