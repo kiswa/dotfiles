@@ -51,7 +51,7 @@ fi
 
 echo ""
 echo "Installing Node Modules..."
-npm install --silent --save-dev gulp del gulp-concat bower-files gulp-scss-lint gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-jshint jshint-stylish gulp-uglify gulp-imagemin fb-flo
+npm install --silent --save-dev gulp del gulp-concat bower-files gulp-scss-lint gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-jshint jshint-stylish gulp-uglify gulp-imagemin fb-flo merge-stream
 
 echo ""
 git init
