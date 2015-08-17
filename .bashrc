@@ -31,4 +31,4 @@ EDITOR="/usr/bin/vim"
 unset SSH_ASKPASS # Keeps windows from opening when pushing git repo
 
 # On a headless VM, use fbterm to allow 256-color display
-[ -n "$FBTERM" ] && export TERM=fbterm
+#[ -n "$FBTERM" ] && export TERM=fbterm
