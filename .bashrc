@@ -10,8 +10,13 @@ complete -cf sudo
 alias ls='ls -lh --color=auto --group-directories-first'
 
 function parse_git_branch {
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    echo "("${ref#refs/heads/}") "
+    ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
+    echo -n "("${ref}") "
+
+    stash=$(git stash list 2> /dev/null | wc -l) || return
+    if [ "$stash" != "0" ] ; then
+        echo "("${stash}") "
+    fi
 }
 
 # For regular users, this gives a nice two-tone green
@@ -26,4 +31,4 @@ EDITOR="/usr/bin/vim"
 unset SSH_ASKPASS # Keeps windows from opening when pushing git repo
 
 # On a headless VM, use fbterm to allow 256-color display
-#[ -n "$FBTERM" ] && export TERM=fbterm
+[ -n "$FBTERM" ] && export TERM=fbterm
