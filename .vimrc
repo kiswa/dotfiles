@@ -89,6 +89,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'myusuf3/numbers.vim'
 " HTML5 and Inline SVG support
 Plugin 'othree/html5.vim'
+" Typescript syntax
+Plugin 'leafgarland/typescript-vim'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
