@@ -91,8 +91,6 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'othree/html5.vim'
 " Typescript syntax
 Plugin 'leafgarland/typescript-vim'
-" Highlighting in template strings (ES6, TS)
-Plugin 'quramy/vim-js-pretty-template'
 " Highlight color codes and names
 Plugin 'gorodinskiy/vim-coloresque'
 
@@ -154,9 +152,6 @@ if has("autocmd")
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
-  " Autocmd settings for pretty-template
-  autocmd FileType javascript,typescript JsPreTmpl html
 
   augroup END
 else
