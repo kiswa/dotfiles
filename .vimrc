@@ -91,8 +91,10 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'othree/html5.vim'
 " Typescript syntax
 Plugin 'leafgarland/typescript-vim'
-" Highlight color codes and names
+" Colorize inline colors
 Plugin 'gorodinskiy/vim-coloresque'
+" Simple TODO lists
+Plugin 'vitalk/vim-simple-todo'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
@@ -115,6 +117,9 @@ colorscheme base16-eighties
 
 " Map Ctrl+z to close a buffer without closing the split window
 nnoremap <C-z> :bp\|bd #<CR>
+
+" Use comman as leader key
+let mapleader=","
 
 " Only do this when compiled with support for autocommands.
 if has("autocmd")
