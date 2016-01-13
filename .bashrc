@@ -27,7 +27,7 @@ PS1='\[\e[1;32m\]\u\[\e[m\]\[\e[0;32m\]@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] $(pars
 PATH="`ruby -e 'print Gem.user_dir'`/bin:$PATH"
 PATH="/home/$USER/bin/:$PATH"
 
-EDITOR="/usr/bin/vim"
+export EDITOR=vim
 unset SSH_ASKPASS # Keeps windows from opening when pushing git repo
 
 # On a headless VM, use fbterm to allow 256-color display
