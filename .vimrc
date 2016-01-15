@@ -77,8 +77,6 @@ Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-unimpaired'
 " Tree explorer
 Plugin 'scrooloose/nerdtree'
-" Scratch buffer
-Plugin 'mtth/scratch.vim'
 " Multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
 " JSHint linter - Requires Node and JSHint: npm install -g jshint
