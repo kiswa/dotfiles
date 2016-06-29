@@ -3,34 +3,63 @@ set nocompatible
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+" Do not keep a backup file, use versions instead
+set nobackup
+" Kind of the same as above, no swap file for backups
+set noswapfile
+" Keep 250 lines of command line history
+set history=250
+" Show the cursor position all the time
+set ruler
+" Display incomplete commands
+set showcmd
+" Do incremental searching
+set incsearch
+" Hide buffers instead of closing them
+set hidden
+" Show line numbers
+set number
+" Use smart indenting
+set smartindent
+" Tabs are 4 spaces
+set tabstop=4
+" Ditto
+set softtabstop=4
+" Indenting matches tabs
+set shiftwidth=4
+" Expand tabs into spaces
+set expandtab
+" Two lines for status (so airline plugin is useful)
+set laststatus=2
+" Use indent code folding
+set foldmethod=indent
+" Don't indent files on open
+set foldlevelstart=20
+" Change default split position
+set splitbelow
+" Change default split position
+set splitright
+" Use UTF-8
+set encoding=utf-8
+" Ignore case when searching
+set ignorecase
+" Unless the search has capitals in it
+set smartcase
+" Default background color
+set background=dark
+" Don't let files change vim
+set modelines=0
+" Show matching parenthesis
+set showmatch
+" Numeric commands increment hex and alpha (not octal)
+set nrformats=hex,alpha
+" Display autocomplete options
+set wildmenu
+" Set the font
+set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
 
-set nobackup            " Do not keep a backup file, use versions instead
-set noswapfile          " Kind of the same as above, no swap file for backups
-set history=250         " Keep 250 lines of command line history
-set ruler               " Show the cursor position all the time
-set showcmd             " Display incomplete commands
-set incsearch           " Do incremental searching
-set hidden              " Hide buffers instead of closing them
-set number              " Show line numbers
-set smartindent         " Use smart indenting
-set tabstop=4           " Tabs are 4 spaces
-set softtabstop=4       " Ditto
-set shiftwidth=4        " Indenting matches tabs
-set expandtab           " Expand tabs into spaces
-set laststatus=2        " Two lines for status (so airline plugin is useful)
-set foldmethod=indent   " Use indent code folding
-set foldlevelstart=20   " Don't indent files on open
-set splitbelow          " Change default split position
-set splitright          " Change default split position
-set encoding=utf-8      " Use UTF-8
-set ignorecase          " Ignore case when searching
-set smartcase           " Unless the search has capitals in it
-set background=dark     " Default background color
-set modelines=0         " Don't let files change vim
-set showmatch           " Show matching parenthesis
-set nrformats=hex,alpha " Numeric commands increment hex and alpha (not octal)
-set wildmenu            " Display autocomplete options
-syntax on               " Syntax highlighting on
+" Syntax highlighting on
+syntax on
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -41,7 +70,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine.
 if has('mouse')
-  set mouse=a
+    set mouse=a
 endif
 
 " Prep for Vundle
@@ -58,7 +87,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " Markdown syntax highlighting
 Plugin 'Markdown'
 " Status and tabline
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+" Themes for vim-airline
+Plugin 'vim-airline/vim-airline-themes'
 " Auto-completion with cache
 Plugin 'Shougo/neocomplete.vim'
 " Base16 color schemes
@@ -93,9 +124,17 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'gorodinskiy/vim-coloresque'
 " Simple TODO lists
 Plugin 'vitalk/vim-simple-todo'
+" Icon display in various plugins
+Plugin 'ryanoasis/vim-devicons'
+" Show git status icons in NERDTree
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Highlight files by type in NERDTree
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline_theme='tomorrow'
 
 " neocomplete settings
 let g:neocomplete#enable_at_startup = 1
@@ -105,6 +144,8 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Show hidden files in NERDTree
 let NERDTreeShowHidden = 1
+" Make NERDTree wider
+let g:NERDTreeWinSize = 36
 " Map Alt+a to toggle NERDTree
 map <Esc>a :NERDTreeToggle<CR>
 
@@ -116,56 +157,55 @@ colorscheme base16-eighties
 " Map Ctrl+z to close a buffer without closing the split window
 nnoremap <C-z> :bp\|bd #<CR>
 
-" Use comman as leader key
+" Use comma as leader key
 let mapleader=","
 
 " Only do this when compiled with support for autocommands.
 if has("autocmd")
-  filetype plugin indent on
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+    filetype plugin indent on
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+        " For all text files set 'textwidth' to 78 characters.
+        autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known good cursor position.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+        " When editing a file, always jump to the last known good cursor position.
+        autocmd BufReadPost *
+                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
 
-  " Allow closing vim when only window open is NERDTree.
-  autocmd BufEnter *
-    \ if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") |
-    \   q |
-    \ endif
+        " Allow closing vim when only window open is NERDTree.
+        autocmd BufEnter *
+                    \ if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") |
+                    \   q |
+                    \ endif
 
-  " Strip trailing whitespace on save and maintain cursor position.
-  fun! StripTrailingWhitespace()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-  endfun
-  autocmd BufWritePre * :call StripTrailingWhitespace()
+        " Strip trailing whitespace on save and maintain cursor position.
+        fun! StripTrailingWhitespace()
+            let l = line(".")
+            let c = col(".")
+            %s/\s\+$//e
+            call cursor(l, c)
+        endfun
+        autocmd BufWritePre * :call StripTrailingWhitespace()
 
-  " Autocmd settings for neocomplete
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
-  augroup END
+        " Autocmd settings for neocomplete
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    augroup END
 else
-  " Set autoindenting on
-  set autoindent
+    " Set autoindenting on
+    set autoindent
 endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-          \ | wincmd p | diffthis
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                \ | wincmd p | diffthis
 endif
