@@ -57,6 +57,8 @@ set nrformats=hex,alpha
 set wildmenu
 " Set the font
 set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
+" Don't wrap long lines
+set nowrap
 
 " Syntax highlighting on
 syntax on
