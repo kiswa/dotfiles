@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 import subprocess
 
-showLimit = 10
-packageManager = 'yaourt'
+showLimit = 15
+packageManager = 'pacaur'
 #packageManager = 'pacman'
-packageManagerOptions = '-Qua'
-#packageManagerOptions = '-Qu'
+packageManagerOptions = '-Qu'
 
 program = subprocess.Popen([packageManager,packageManagerOptions],
                              stdout=subprocess.PIPE,
@@ -23,8 +22,8 @@ for line in program.stdout:
     line = line.split()
     update={}
 
-    update["pkg"] = line[0]
-    update["ver"] = line[1]
+    update["pkg"] = line[2]
+    update["ver"] = line[5]
 
     pkgs.append(update)
 
@@ -34,12 +33,12 @@ if pkgs:
     print("{0} Update{1} Available:".format(count, plural))
 
     if count > showLimit:
-        print("     Showing the first {0}.".format(showLimit))
+        print("               Showing the first {0}.".format(showLimit))
     pkgNum = 0
     for package in pkgs:
         pkgNum += 1
         if pkgNum > showLimit: break
-        print(" {0}".format(package["pkg"]))
+        print(" {0} {1}".format(package["pkg"], package["ver"]))
 else:
     print("The system is up-to-date.")
 
