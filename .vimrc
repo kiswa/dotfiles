@@ -132,6 +132,8 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Highlight files by type in NERDTree
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Automatically pair braces
+Plugin 'jiangmiao/auto-pairs'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
