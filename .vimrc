@@ -75,65 +75,62 @@ if has('mouse')
     set mouse=a
 endif
 
-" Prep for Vundle
-filetype off
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Install vim-plug if we don't already have it
+if empty(glob("~/.vim/autoload/plug.vim"))
+    " Download the actual plugin manager
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-" The Vim Bundle Manager manages itself
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Fuzzy finder
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Markdown syntax highlighting
-Plugin 'Markdown'
+Plug 'Markdown', { 'for': 'markdown' }
 " Status and tabline
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Themes for vim-airline
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 " Auto-completion with cache
-Plugin 'Shougo/neocomplete.vim'
+Plug 'Shougo/neocomplete.vim'
 " Base16 color schemes
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 " Make GUI color schemes work in terminal Vim
-Plugin 'CSApprox'
+Plug 'CSApprox'
 " Emmet implementation for vim
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 " Language-aware commenting of text
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 " Git wrapper
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Git status indicator
-Plugin 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 " Handy bracket mappings
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 " Tree explorer
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 " JSHint linter - Requires Node and JSHint: npm install -g jshint
-Plugin 'Shutnik/jshint2.vim'
+Plug 'Shutnik/jshint2.vim'
 " Work with surrounding tags
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Line numbers toggling by mode
-Plugin 'myusuf3/numbers.vim'
+Plug 'myusuf3/numbers.vim'
 " HTML5 and Inline SVG support
-Plugin 'othree/html5.vim'
+Plug 'othree/html5.vim'
 " Typescript syntax
-Plugin 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 " Colorize inline colors
-Plugin 'gorodinskiy/vim-coloresque'
-" Simple TODO lists
-Plugin 'vitalk/vim-simple-todo'
+Plug 'gorodinskiy/vim-coloresque'
 " Icon display in various plugins
-Plugin 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 " Show git status icons in NERDTree
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Highlight files by type in NERDTree
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Automatically pair braces
-Plugin 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
@@ -153,7 +150,7 @@ let g:NERDTreeWinSize = 36
 " Map Alt+a to toggle NERDTree
 map <Esc>a :NERDTreeToggle<CR>
 
-call vundle#end()
+call plug#end()
 
 " This must come after vundle#end.
 colorscheme base16-eighties
