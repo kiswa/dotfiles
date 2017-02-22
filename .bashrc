@@ -23,14 +23,21 @@ function parse_git_branch {
 
 # For regular users, this gives a nice two-tone green
 PS1='\[\e[1;32m\]\u\[\e[m\]\[\e[0;32m\]@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] $(parse_git_branch)\[\e[1;32m\]\$\[\e[m\] \[\e[0;37m\]'
-# For root, use this so there is a visual difference (two-tone red)
-# PS1='\[\e[1;31m\]\u\[\e[m\]\[\e[0;31m\]@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] $(parse_git_branch)\[\e[1;31m\]\$\[\e[m\] \[\e[0;37m\]'
+
+# For root, this provides a visual difference (two-tone red)
+if (( $EUID == 0 )); then
+    PS1='\[\e[1;31m\]\u\[\e[m\]\[\e[0;31m\]@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] $(parse_git_branch)\[\e[1;31m\]\$\[\e[m\] \[\e[0;37m\]'
+fi
+
+GOPATH="$HOME/.go"
+export GOPATH
+
+PATH="$GOPATH/bin:$PATH"
+
+PATH="/usr/bin/core_perl:$PATH"
 
 PATH="`ruby -e 'print Gem.user_dir'`/bin:$PATH"
 PATH="$HOME/bin/:$PATH"
-
-PATH="$HOME/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
 
 EDITOR="/usr/bin/vim"
 unset SSH_ASKPASS # Keeps windows from opening when pushing git repo

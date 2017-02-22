@@ -32,6 +32,8 @@ use_spacer = 'right',
 show_graph_scale = false,
 show_graph_range = false,
 double_buffer = true,
+lua_load = '/home/kiswa/bin/conky_bg.lua',
+lua_draw_hook_pre = conky_draw_bg
 }
 
 conky.text = [[
