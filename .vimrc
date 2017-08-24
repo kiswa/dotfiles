@@ -1,6 +1,6 @@
+" Settings {{{
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 " Do not keep a backup file, use versions instead
@@ -31,6 +31,8 @@ set shiftwidth=4
 set expandtab
 " Two lines for status (so airline plugin is useful)
 set laststatus=2
+" Enable folding
+set foldenable
 " Use indent code folding
 set foldmethod=indent
 " Don't indent files on open
@@ -47,8 +49,8 @@ set ignorecase
 set smartcase
 " Default background color
 set background=dark
-" Don't let files change vim
-set modelines=0
+" Let files change vim
+set modelines=1
 " Show matching parenthesis
 set showmatch
 " Numeric commands increment hex and alpha (not octal)
@@ -74,7 +76,8 @@ inoremap <C-U> <C-G>u<C-U>
 if has('mouse')
     set mouse=a
 endif
-
+" }}}
+" Plugins {{{
 " Install vim-plug if we don't already have it
 if empty(glob("~/.vim/autoload/plug.vim"))
     " Download the actual plugin manager
@@ -86,7 +89,7 @@ call plug#begin('~/.vim/plugged')
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
 " Markdown syntax highlighting
-Plug 'Markdown', { 'for': 'markdown' }
+Plug 'vim-scripts/Markdown', { 'for': 'markdown' }
 " Status and tabline
 Plug 'vim-airline/vim-airline'
 " Themes for vim-airline
@@ -96,7 +99,7 @@ Plug 'Shougo/neocomplete.vim'
 " Base16 color schemes
 Plug 'chriskempson/base16-vim'
 " Make GUI color schemes work in terminal Vim
-Plug 'CSApprox'
+Plug 'vim-scripts/CSApprox'
 " Emmet implementation for vim
 Plug 'mattn/emmet-vim'
 " Language-aware commenting of text
@@ -131,11 +134,18 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Automatically pair braces
 Plug 'jiangmiao/auto-pairs'
-
+" }}}
+" Plugin Settings {{{
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_theme='tomorrow'
+
+" Ctrl+P settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_show_hidden = 1
 
 " neocomplete settings
 let g:neocomplete#enable_at_startup = 1
@@ -152,15 +162,17 @@ map <Esc>a :NERDTreeToggle<CR>
 
 call plug#end()
 
-" This must come after vundle#end.
+" This must come after plug#end
 colorscheme base16-eighties
-
+" }}}
+" Mappings {{{
 " Map Ctrl+z to close a buffer without closing the split window
 nnoremap <C-z> :bp\|bd #<CR>
 
 " Use comma as leader key
 let mapleader=","
-
+"}}}
+"Autocmd {{{
 " Only do this when compiled with support for autocommands.
 if has("autocmd")
     filetype plugin indent on
@@ -202,7 +214,8 @@ else
     " Set autoindenting on
     set autoindent
 endif
-
+" }}}
+" Custom Commands {{{
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -210,3 +223,5 @@ if !exists(":DiffOrig")
     command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
                 \ | wincmd p | diffthis
 endif
+" }}}
+" vim:foldmethod=marker:foldlevel=0
