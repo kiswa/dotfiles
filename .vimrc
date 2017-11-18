@@ -90,6 +90,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 " Markdown syntax highlighting
 Plug 'vim-scripts/Markdown', { 'for': 'markdown' }
+" Pug (Jade) syntax highlighting
+Plug 'digitaltoad/vim-pug'
 " Status and tabline
 Plug 'vim-airline/vim-airline'
 " Themes for vim-airline
@@ -114,7 +116,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
-" JSHint linter - Requires Node and JSHint: npm install -g jshint
+" JSHint linter - Requires Node and JSHint: npm i -g jshint
 Plug 'Shutnik/jshint2.vim'
 " Work with surrounding tags
 Plug 'tpope/vim-surround'
@@ -134,6 +136,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Automatically pair braces
 Plug 'jiangmiao/auto-pairs'
+" Handle Vue files
+Plug 'posva/vim-vue'
 " }}}
 " Plugin Settings {{{
 " Enable airline
@@ -209,6 +213,8 @@ if has("autocmd")
         autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType typescript setlocal omnifunc=typescriptcomplete#Complete
+        autocmd FileType typescript setlocal isk-=.
     augroup END
 else
     " Set autoindenting on

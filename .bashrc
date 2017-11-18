@@ -10,6 +10,7 @@ complete -cf sudo
 alias ls='ls -lh --color=auto --group-directories-first'
 alias web='cd ~/Projects/Web/'
 alias pacu='pacaur -Syu'
+alias rmt='ssh 192.168.2.111'
 
 function parse_git_branch {
     ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
