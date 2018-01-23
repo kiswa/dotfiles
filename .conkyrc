@@ -20,20 +20,18 @@ out_to_console = false,
 out_to_stderr = false,
 extra_newline = false,
 own_window = true,
-own_window_type = 'dock',
-own_window_transparent = true,
+own_window_type = 'normal',
+own_window_transparent = false,
 own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 own_window_argb_visual = true,
-own_window_argb_value = 255,
+own_window_argb_value = 125,
 stippled_borders = 0,
 update_interval = 1.0,
 uppercase = false,
 use_spacer = 'right',
 show_graph_scale = false,
 show_graph_range = false,
-double_buffer = true,
-lua_load = '/home/kiswa/bin/conky_bg.lua',
-lua_draw_hook_pre = conky_draw_bg
+double_buffer = true
 }
 
 conky.text = [[
