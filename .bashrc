@@ -37,14 +37,16 @@ GOPATH="$HOME/.go"
 export GOPATH
 
 PATH="$GOPATH/bin:$PATH"
-
 PATH="/usr/bin/core_perl:$PATH"
-
 PATH="`ruby -e 'print Gem.user_dir'`/bin:$PATH"
 PATH="$HOME/bin/:$PATH"
+PATH="$HOME/.npm-global/:$PATH"
+
+export MANPATH="$HOME/.npm-global/share/man:$(manpath)"
 
 export EDITOR="vim"
 unset SSH_ASKPASS # Keeps windows from opening when pushing git repo
 
 # On a headless VM, use fbterm to allow 256-color display
 #[ -n "$FBTERM" ] && export TERM=fbterm
+

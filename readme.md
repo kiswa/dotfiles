@@ -4,11 +4,14 @@ A few files for setting up bash and Vim in different environments. Also includes
 
  * `bin`
   * `fixShareCopy` resets file and directory permissions recursively for a directory copied into a VM from a host share (also useful to just set file and directory permissions to sane defaults). Use it as `fixShareCopy copiedDirName`.
-  * `conky_bg.lua`, `notify.py`, and `weather.py` are all used by conky as configured in `../.conkyrc`.
+  * `weather.py` is used by conky as configured in `../.conkyrc`.
   * `pkgBackup` generates a list of all installed packages (for an Arch install) to make VM setups easier.
  * `.bashrc` includes `\home\$USER\bin` and __Ruby__ in the path, and customizes the command line (to include displaying active branch in git repos).
  * `.conkyrc` provides a configuration setup for [conky](https://wiki.archlinux.org/index.php/conky) which relies on files in `bin`.
- * `.vimrc` sets up Vim with several useful things, just open Vim and run `:PluginInstall` to get all the plugins loaded (Assumes [Vundle](https://github.com/gmarik/Vundle.vim) is installed).
- * `.gitconfig` sets up my user and a couple of helpful aliases
+ * `.vimrc` sets up Vim with several useful things, just open Vim and run `:PlugInstall` to get all the plugins loaded (Assumes [vim-plug](https://github.com/junegunn/vim-plug) is installed).
+ * `.gitconfig` sets up my user and a couple of helpful aliases (Edit this for your git user!)
+ * `.npmrc` use local directory `~\.npm-global` for global packages (no sudo needed to install)
+ * `.tmux.conf` sets up tmux configuration including Powerline-styled status line
 
- To use everything, just run `install.sh`. To selectively use things, it's as easy as copying the files you want to the chosen destination.
+ To use everything, just run `install.sh` from within the `dotfiles` directory. To selectively use things, it's as easy as copying the files you want to the chosen destination.
+
