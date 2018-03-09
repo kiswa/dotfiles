@@ -40,7 +40,7 @@ PATH="$GOPATH/bin:$PATH"
 PATH="/usr/bin/core_perl:$PATH"
 PATH="`ruby -e 'print Gem.user_dir'`/bin:$PATH"
 PATH="$HOME/bin/:$PATH"
-PATH="$HOME/.npm-global/:$PATH"
+PATH="$HOME/.npm-global/bin:$PATH"
 
 export MANPATH="$HOME/.npm-global/share/man:$(manpath)"
 
