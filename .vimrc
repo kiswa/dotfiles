@@ -21,12 +21,12 @@ set hidden
 set number
 " Use smart indenting
 set smartindent
-" Tabs are 4 spaces
-set tabstop=4
+" Tabs are 2 spaces
+set tabstop=2
 " Ditto
-set softtabstop=4
+set softtabstop=2
 " Indenting matches tabs
-set shiftwidth=4
+set shiftwidth=2
 " Expand tabs into spaces
 set expandtab
 " Two lines for status (so airline plugin is useful)
