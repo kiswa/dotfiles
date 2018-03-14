@@ -187,6 +187,9 @@ if has("autocmd")
         " For all text files set 'textwidth' to 78 characters.
         autocmd FileType text setlocal textwidth=78
 
+        " For Markdown files, wrap lines
+        autocmd FileType markdown setlocal wrap
+
         " When editing a file, always jump to the last known good cursor position.
         autocmd BufReadPost *
                     \ if line("'\"") > 1 && line("'\"") <= line("$") |
