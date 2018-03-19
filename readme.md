@@ -15,3 +15,5 @@ A few files for setting up bash and Vim in different environments. Also includes
 
  To use everything, just run `install.sh` from within the `dotfiles` directory. To selectively use things, it's as easy as copying the files you want to the chosen destination.
 
+ If you use `gnome-terminal` and want the terminal colors to match the Vim colors, also run `base16-eighties-256.sh`, then open a new terminal and choose the profile for that color scheme.
+
