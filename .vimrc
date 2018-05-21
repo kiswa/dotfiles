@@ -61,6 +61,8 @@ set wildmenu
 set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
 " Don't wrap long lines
 set nowrap
+" Mark line length
+set colorcolumn=80
 
 " Syntax highlighting on
 syntax on
