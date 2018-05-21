@@ -1,7 +1,7 @@
 conky.config = {
 alignment = 'middle_right',
 background = true,
-border_width = 1,
+border_width = 2,
 cpu_avg_samples = 2,
 default_color = 'eee',
 default_outline_color = 'white',
@@ -11,10 +11,10 @@ draw_graph_borders = true,
 draw_outline = false,
 draw_shades = true,
 use_xft = true,
-font = 'Fira Sans:size=12',
+font = 'Fira Sans:size=11',
 xftalpha = 0.8,
-gap_x = 10,
-gap_y = 10,
+gap_x = 30,
+gap_y = 30,
 no_buffers = true,
 out_to_console = false,
 out_to_stderr = false,
@@ -39,24 +39,26 @@ ${alignr}${exec whoami} @ $nodename
 ${alignr}$sysname $kernel $machine$color
 $hr
 ${color bbb}Uptime:$color $uptime_short
-${color bbb}RAM Usage:$color $memperc%${goto 140}${membar 4}
-${color bbb}CPU Usage:$color $cpu%${goto 140}${cpubar 4}
-     ${color grey}${cpugraph cpu0 30,54 29E6C6 E62949 -t}  ${cpugraph cpu1 30,54 29E6C6 E62949 -t} \
- ${cpugraph cpu2 30,54 29E6C6 E62949 -t}  ${cpugraph cpu3 30,54 29E6C6 E62949 -t}
+${color bbb}RAM Usage:$color $memperc%${goto 240}${membar 4}
+${color bbb}CPU Usage:$color $cpu%${goto 240}${cpubar 4}
+  ${color grey}${cpugraph cpu0 45,67 29E6C6 E62949 -t}   ${cpugraph cpu1 45,67 29E6C6 E62949 -t} \
+  ${cpugraph cpu2 45,67 29E6C6 E62949 -t}   ${cpugraph cpu3 45,67 29E6C6 E62949 -t}
+  ${color grey}${cpugraph cpu5 45,67 29E6C6 E62949 -t}   ${cpugraph cpu6 45,67 29E6C6 E62949 -t} \
+  ${cpugraph cpu7 45,67 29E6C6 E62949 -t}   ${cpugraph cpu8 45,67 29E6C6 E62949 -t}
 ${alignc}${color bbb}CPU Frequency:$color ${freq_g}GHz
 ${alignc}${color bbb}Processes:$color $processes${color bbb}Running:$color $running_processes
 ${alignc}${color bbb}Battery:$color ${battery BAT0}
 $stippled_hr
 ${color bbb}File System Usage:$color
- / ${goto 110}${fs_used /}/${fs_size /}
- ${fs_bar 6,190 /} ${alignr}${fs_used_perc /}%
- /home ${goto 110}${fs_used /home}/${fs_size /home}
- ${fs_bar 6,190 /home} ${alignr}${fs_used_perc /home}%
+ / ${goto 150}${fs_used /}/${fs_size /}
+ ${fs_bar 12,270 /} ${alignr}${fs_used_perc /}%
+ /home ${goto 150}${fs_used /home}/${fs_size /home}
+ ${fs_bar 12,270 /home} ${alignr}${fs_used_perc /home}%
 $stippled_hr
 ${color bbb}Networking:$color
- Up: ${upspeed wlp2s0}${goto 130}Down: ${downspeed wlp2s0}
- ${downspeedgraph wlp2s0 20,90 29E6C6 E62949 -t}${goto 130}\
-${upspeedgraph wlp2s0 20,90 29E6C6 E62949 -t}$color
+ Up: ${upspeed wlp2s0}${goto 180}Down: ${downspeed wlp2s0}
+ ${downspeedgraph wlp2s0 50,140 29E6C6 E62949 -t}${goto 180}\
+${upspeedgraph wlp2s0 50,140 29E6C6 E62949 -t}$color
 $stippled_hr
 ${alignc}${color bbb}Desktop$color ${desktop} ${color bbb}of$color ${desktop_number}
 #Update weather every 5 minutes
