@@ -1,19 +1,20 @@
 #!/bin/sh
 
+PROJ_PATH=~/Projects/Web/
+
 if ! tmux has-session -t "web" ; then
-  tmux -2u new -d -s "web" -n $1 -c ~/Projects/Web/$1
+  tmux -2u new -d -s "web" -n $1 -c $PROJ_PATH$1
 else
-  tmux new-window -k -n $1 -c ~/Projects/Web/$1
+  tmux new-window -k -n $1 -c $PROJ_PATH$1
 fi
 
-tmux split-window -p 15 -c ~/Projects/Web/$1/
+tmux split-window -p 15 -c $PROJ_PATH$1/
 
 tmux select-pane -t 1
-tmux split-window -c ~/Projects/Web/$1/ -h
+tmux split-window -c $PROJ_PATH$1/ -h
 
 tmux select-pane -t 0
 tmux send-keys "vim" C-m
 
 tmux select-window -t $1
 tmux a -t "web"
-
