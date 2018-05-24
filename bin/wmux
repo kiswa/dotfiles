@@ -18,3 +18,4 @@ tmux send-keys "vim" C-m
 
 tmux select-window -t $1
 tmux a -t "web"
+
