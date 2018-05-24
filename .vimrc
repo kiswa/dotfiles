@@ -76,14 +76,14 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine.
 if has('mouse')
-    set mouse=a
+  set mouse=a
 endif
 " }}}
 " Plugins {{{
 " Install vim-plug if we don't already have it
 if empty(glob("~/.vim/autoload/plug.vim"))
-    " Download the actual plugin manager
-    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+  " Download the actual plugin manager
+  execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -181,49 +181,54 @@ let mapleader=","
 "Autocmd {{{
 " Only do this when compiled with support for autocommands.
 if has("autocmd")
-    filetype plugin indent on
-    " Put these in an autocmd group, so that we can delete them easily.
-    augroup vimrcEx
-        au!
+  filetype plugin indent on
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+    au!
 
-        " For all text files set 'textwidth' to 78 characters.
-        autocmd FileType text setlocal textwidth=78
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
 
-        " For Markdown files, wrap lines
-        autocmd FileType markdown setlocal wrap
+    " For Markdown files, wrap lines
+    autocmd FileType markdown setlocal wrap
 
-        " When editing a file, always jump to the last known good cursor position.
-        autocmd BufReadPost *
-                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-                    \   exe "normal! g`\"" |
-                    \ endif
+    " When editing a file, always jump to the last known good cursor position.
+    autocmd BufReadPost *
+          \ if line("'\"") > 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
 
-        " Allow closing vim when only window open is NERDTree.
-        autocmd BufEnter *
-                    \ if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") |
-                    \   q |
-                    \ endif
+    " Allow closing vim when only window open is NERDTree.
+    autocmd BufEnter *
+          \ if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") |
+          \   q |
+          \ endif
 
-        " Strip trailing whitespace on save and maintain cursor position.
-        fun! StripTrailingWhitespace()
-            let l = line(".")
-            let c = col(".")
-            %s/\s\+$//e
-            call cursor(l, c)
-        endfun
-        autocmd BufWritePre * :call StripTrailingWhitespace()
+    " Auto-reload changed buffers.
+    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+    autocmd FileChangedShellPost *
+          \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-        " Autocmd settings for neocomplete
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType typescript setlocal omnifunc=typescriptcomplete#Complete
-        autocmd FileType typescript setlocal isk-=.
-    augroup END
+    " Strip trailing whitespace on save and maintain cursor position.
+    fun! StripTrailingWhitespace()
+      let l = line(".")
+      let c = col(".")
+      %s/\s\+$//e
+      call cursor(l, c)
+    endfun
+    autocmd BufWritePre * :call StripTrailingWhitespace()
+
+    " Autocmd settings for neocomplete
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType typescript setlocal omnifunc=typescriptcomplete#Complete
+    autocmd FileType typescript setlocal isk-=.
+  augroup END
 else
-    " Set autoindenting on
-    set autoindent
+  " Set autoindenting on
+  set autoindent
 endif
 " }}}
 " Custom Commands {{{
@@ -231,8 +236,8 @@ endif
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-                \ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+        \ | wincmd p | diffthis
 endif
 " }}}
 " vim:foldmethod=marker:foldlevel=0
