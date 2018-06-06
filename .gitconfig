@@ -10,7 +10,11 @@
   ch = checkout
   co = commit
   st = status
+  fe = fetch
+  mg = merge
   br = branch
+  bd = branch -d
+  bc = checkout -b
   unstage = reset HEAD --
   last = log -1 HEAD
 
