@@ -1,10 +1,16 @@
 [user]
-    email = kiswa.com@gmail.com
-    name = Matthew Ross
+  email = kiswa.com@gmail.com
+  name = Matthew Ross
 [url "https://github.com/"]
-    insteadOf = "gh:"
+  insteadOf = "gh:"
 [url "https://kiswa@github.com/kiswa/"]
-    insteadOf = "ghk:"
+  insteadOf = "ghk:"
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ch = checkout
+  co = commit
+  st = status
+  br = branch
+  unstage = reset HEAD --
+  last = log -1 HEAD
 
