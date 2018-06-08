@@ -6,15 +6,26 @@
 [url "https://kiswa@github.com/kiswa/"]
   insteadOf = "ghk:"
 [alias]
+  la = !git config -l | grep alias | cut -c 7-
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  ch = checkout
-  co = commit
-  st = status
-  fe = fetch
-  mg = merge
-  br = branch
+  ls = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%C(bold blue) [%cn]' --decorate
+  adi = add --interactive
   bd = branch -d
-  bc = checkout -b
-  unstage = reset HEAD --
+  br = branch
+  ch = checkout
+  cb = checkout -b
+  cl = clone
+  cm = commit -m
+  cma = commit -ma
+  co = commit
+  coa = commit -a --amend
+  cp = cherry-pick
+  df = diff
+  fe = fetch
   last = log -1 HEAD
+  mg = merge
+  st = status
+  sts = status -s
+  undo = reset HEAD~1 --mixed
+  unstage = reset HEAD --
 
