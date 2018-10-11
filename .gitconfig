@@ -25,6 +25,8 @@
   last = log -1 HEAD
   mg = merge
   st = status
+  sta = stash
+  stp = stash pop
   sts = status -s
   undo = reset HEAD~1 --mixed
   unstage = reset HEAD --
