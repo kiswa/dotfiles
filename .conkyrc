@@ -63,5 +63,4 @@ $stippled_hr
 ${alignc}${color bbb}Desktop$color ${desktop} ${color bbb}of$color ${desktop_number}
 #Update weather every 5 minutes
 ${alignc}${color bbb}${texeci 300 python /home/kiswa/bin/weather.py 30009}
-$color$hr
 ]]
