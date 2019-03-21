@@ -115,7 +115,7 @@ Plug 'mhinz/vim-signify'
 " Handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 " Tree explorer
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 " JSHint linter - Requires Node and JSHint: npm i -g jshint
@@ -153,11 +153,16 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_show_hidden = 1
 
+if executable('rg')
+  ket g:ctrlp_user_command = 'rg %s --files --hidden --color=always --glob ""'
+endif
+
 " neocomplete settings
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+set wildignore+=*/node_modules/*
 
 " Show hidden files in NERDTree
 let NERDTreeShowHidden = 1
