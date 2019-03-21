@@ -45,6 +45,8 @@ set splitright
 set encoding=utf-8
 " Ignore case when searching
 set ignorecase
+" Ignore certain files/directores
+set wildignore+=*/node_modules/*,*/.git/*,*/tmp/*,*.swp
 " Unless the search has capitals in it
 set smartcase
 " Default background color
@@ -92,8 +94,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 " Markdown syntax highlighting
 Plug 'vim-scripts/Markdown', { 'for': 'markdown' }
-" Pug (Jade) syntax highlighting
-Plug 'digitaltoad/vim-pug'
 " Status and tabline
 Plug 'vim-airline/vim-airline'
 " Themes for vim-airline
@@ -108,18 +108,12 @@ Plug 'vim-scripts/CSApprox'
 Plug 'mattn/emmet-vim'
 " Language-aware commenting of text
 Plug 'tomtom/tcomment_vim'
-" Git wrapper
-Plug 'tpope/vim-fugitive'
 " Git status indicator
 Plug 'mhinz/vim-signify'
 " Handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 " Tree explorer
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
-" JSHint linter - Requires Node and JSHint: npm i -g jshint
-Plug 'Shutnik/jshint2.vim'
+Plug 'scrooloose/nerdtree'
 " Work with surrounding tags
 Plug 'tpope/vim-surround'
 " Line numbers toggling by mode
@@ -152,6 +146,12 @@ let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_show_hidden = 1
+
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
 
 " neocomplete settings
 let g:neocomplete#enable_at_startup = 1
