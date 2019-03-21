@@ -1,57 +1,11 @@
 #!/usr/bin/python
-#
-# Fetches Weather info from Weather Underground
-#
-# Usage: ./wundergound.py zipcode
-#
-# International:
-#  * Go to http://www.wunderground.com/
-#  * Find your city
-#  * Click the RSS icon
-#  * Station ID is the number that follows /stations/ in the url
-#
-#
 
-# Values are either True or False
-metric=False
-international=False
+import urllib.request, json
 
-import sys
-import feedparser
+jsonurl = "https://stationdata.wunderground.com/cgi-bin/stationlookup?station=KGAALPHA174&units=english&v=2.0&format=json"
 
-def usage():
-    print("Usage:")
-    if international:
-        print("  ./weather.py StationID")
-    else:
-        print("  ./weather.py zipcode")
-    sys.exit(1)
+with urllib.request.urlopen(jsonurl) as url:
+    data = json.loads(url.read().decode())
+    current = data['stations']['KGAALPHA174']
+    print(str(current['temperature']) + '°F' + ' - ' + str(current['wind_speed']) + 'mph')
 
-if not len(sys.argv) == 2:
-    usage()
-
-location=sys.argv[1]
-
-if international:
-    url="http://rss.wunderground.com/auto/rss_full/global/stations/"
-else:
-    url="http://rss.wunderground.com/auto/rss_full/"
-
-feed=feedparser.parse(url+location)
-
-if not feed.feed:
-    # Assume Error
-    print("Error")
-    sys.exit(1)
-
-current=feed['items'][0].title
-
-if metric:
-    temp=current.split(",")[0].split(":")[1].split("/")[1].strip()
-else:
-    temp=current.split(",")[0].split(":")[1].split("/")[0].strip()
-
-condition=current.split(",")[1].split("-")[0].strip()
-temp='°F'.join(temp.split("F"))
-
-print(temp, "-", condition)
