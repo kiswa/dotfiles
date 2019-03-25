@@ -65,6 +65,8 @@ set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
 set nowrap
 " Mark line length
 set colorcolumn=80
+" Don't include options in a saved session
+set sessionoptions-=options
 
 " Syntax highlighting on
 syntax on
@@ -122,8 +124,6 @@ Plug 'myusuf3/numbers.vim'
 Plug 'othree/html5.vim'
 " Typescript syntax
 Plug 'leafgarland/typescript-vim'
-" Colorize inline colors
-Plug 'gorodinskiy/vim-coloresque'
 " Icon display in various plugins
 Plug 'ryanoasis/vim-devicons'
 " Show git status icons in NERDTree
@@ -134,6 +134,8 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'jiangmiao/auto-pairs'
 " Handle Vue files
 Plug 'posva/vim-vue'
+" Navigate between Vim and tmux splits seamlessly
+Plug 'christoomey/vim-tmux-navigator'
 " }}}
 " Plugin Settings {{{
 " Enable airline
@@ -142,7 +144,7 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='tomorrow'
 
 " Ctrl+P settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_match_window = 'bottom,order:btt'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_show_hidden = 1
