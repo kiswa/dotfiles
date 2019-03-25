@@ -179,6 +179,12 @@ nnoremap <C-z> :bp\|bd #<CR>
 
 " Use comma as leader key
 let mapleader=","
+
+" Use ,ss to be prompted to save a session and .sr to restore
+let g:sessions_dir = '~/.vim/sessions/'
+
+exec 'nnoremap <Leader>ss :mks! ' . g:sessions_dir . '*.vim<C-D><BS><BS><BS><BS><BS>'
+exec 'nnoremap <Leader>sr :so ' . g:sessions_dir. '*.vim<C-D><BS><BS><BS><BS><BS>'
 "}}}
 "Autocmd {{{
 " Only do this when compiled with support for autocommands.
