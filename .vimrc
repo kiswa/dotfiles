@@ -165,8 +165,17 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 let NERDTreeShowHidden = 1
 " Make NERDTree wider
 let g:NERDTreeWinSize = 36
+" Hide NERDTree help message
+let NERDTreeMinimalUI = 1
+" Delete buffer when deleting in NERDTree
+let NERDTreeAutoDeleteBuffer = 1
+" Close NERDTree when opening file
+let NERDTreeQuitOnOpen = 1
+
 " Map Alt+a to toggle NERDTree
 map <Esc>a :NERDTreeToggle<CR>
+" Map Alt+s to open NERDTree with current file located
+map <Esc>s :NERDTreeFind<CR>
 
 call plug#end()
 
