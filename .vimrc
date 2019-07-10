@@ -5,6 +5,7 @@ set nocompatible
 set backspace=indent,eol,start
 " Do not keep a backup file, use versions instead
 set nobackup
+set nowritebackup
 " Kind of the same as above, no swap file for backups
 set noswapfile
 " Keep 250 lines of command line history
@@ -57,8 +58,6 @@ set modelines=1
 set showmatch
 " Numeric commands increment hex and alpha (not octal)
 set nrformats=hex,alpha
-" Display autocomplete options
-set wildmenu
 " Set the font
 set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
 " Don't wrap long lines
@@ -67,6 +66,10 @@ set nowrap
 set colorcolumn=80
 " Don't include options in a saved session
 set sessionoptions-=options
+" Faster updates for autocomplete
+set updatetime=300
+" Don't show |ins-completion-menu| messages
+set shortmess+=c
 
 " Syntax highlighting on
 syntax on
@@ -100,8 +103,6 @@ Plug 'vim-scripts/Markdown', { 'for': 'markdown' }
 Plug 'vim-airline/vim-airline'
 " Themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
-" Auto-completion with cache
-Plug 'Shougo/neocomplete.vim'
 " Base16 color schemes
 Plug 'chriskempson/base16-vim'
 " Make GUI color schemes work in terminal Vim
@@ -136,6 +137,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'posva/vim-vue'
 " Navigate between Vim and tmux splits seamlessly
 Plug 'christoomey/vim-tmux-navigator'
+" Intellisense for Vim
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " }}}
 " Plugin Settings {{{
 " Enable airline
@@ -155,12 +158,44 @@ if executable('rg')
   let g:ctrlp_use_caching = 0
 endif
 
-" neocomplete settings
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" CoC settings
+" Use Tab to trigger completion with characters ahead
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion - breaks undo chain
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Goto command mappings
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" NERDTree Settings
 " Show hidden files in NERDTree
 let NERDTreeShowHidden = 1
 " Make NERDTree wider
@@ -182,14 +217,14 @@ call plug#end()
 " This must come after plug#end
 colorscheme base16-eighties
 " }}}
-" Mappings {{{
+" Non-Plugin Mappings {{{
 " Map Ctrl+z to close a buffer without closing the split window
 nnoremap <C-z> :bp\|bd #<CR>
 
 " Use comma as leader key
 let mapleader=","
 
-" Use ,ss to be prompted to save a session and .sr to restore
+" Use ,ss to be prompted to save a session and ,sr to restore
 let g:sessions_dir = '~/.vim/sessions/'
 
 exec 'nnoremap <Leader>ss :mks! ' . g:sessions_dir . '*.vim<C-D><BS><BS><BS><BS><BS>'
@@ -208,6 +243,9 @@ if has("autocmd")
 
     " For Markdown files, wrap lines
     autocmd FileType markdown setlocal wrap
+
+    " Support comments in JSONC
+    autocmd FileType json syntax match Comment +\/\/.\+$+
 
     " When editing a file, always jump to the last known good cursor position.
     autocmd BufReadPost *
@@ -233,15 +271,8 @@ if has("autocmd")
       %s/\s\+$//e
       call cursor(l, c)
     endfun
-    autocmd BufWritePre * :call StripTrailingWhitespace()
 
-    " Autocmd settings for neocomplete
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType typescript setlocal omnifunc=typescriptcomplete#Complete
-    autocmd FileType typescript setlocal isk-=.
+    autocmd BufWritePre * :call StripTrailingWhitespace()
   augroup END
 else
   " Set autoindenting on
