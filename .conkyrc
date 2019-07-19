@@ -41,10 +41,10 @@ $hr
 ${color bbb}Uptime:$color $uptime_short
 ${color bbb}RAM Usage:$color $memperc%${goto 240}${membar 4}
 ${color bbb}CPU Usage:$color $cpu%${goto 240}${cpubar 4}
-  ${color grey}${cpugraph cpu0 45,67 29E6C6 E62949 -t}   ${cpugraph cpu1 45,67 29E6C6 E62949 -t} \
-  ${cpugraph cpu2 45,67 29E6C6 E62949 -t}   ${cpugraph cpu3 45,67 29E6C6 E62949 -t}
-  ${color grey}${cpugraph cpu5 45,67 29E6C6 E62949 -t}   ${cpugraph cpu6 45,67 29E6C6 E62949 -t} \
-  ${cpugraph cpu7 45,67 29E6C6 E62949 -t}   ${cpugraph cpu8 45,67 29E6C6 E62949 -t}
+  ${color grey}${cpugraph cpu0 45,80 29E6C6 E62949 -t}   ${cpugraph cpu1 45,80 29E6C6 E62949 -t} \
+  ${cpugraph cpu2 45,80 29E6C6 E62949 -t}   ${cpugraph cpu3 45,80 29E6C6 E62949 -t}
+  ${color grey}${cpugraph cpu5 45,80 29E6C6 E62949 -t}   ${cpugraph cpu6 45,80 29E6C6 E62949 -t} \
+  ${cpugraph cpu7 45,80 29E6C6 E62949 -t}   ${cpugraph cpu8 45,80 29E6C6 E62949 -t}
 ${alignc}${color bbb}CPU Frequency:$color ${freq_g}GHz
 ${alignc}${color bbb}Processes:$color $processes${color bbb}Running:$color $running_processes
 ${alignc}${color bbb}Battery:$color ${battery BAT0}
