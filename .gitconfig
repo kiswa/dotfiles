@@ -26,7 +26,6 @@
   mg = merge
   st = status
   sta = stash
-  std = stash drop
   stp = stash pop
   sts = status -s
   undo = reset HEAD~1 --mixed
