@@ -2,10 +2,17 @@
 
 PROJ_PATH=~/Projects/Web/
 
-if ! tmux has-session -t "web" ; then
-  tmux -2u new -d -s "web" -n $1 -c $PROJ_PATH$1
+tmux has-session -t "web"
+if [ $? -eq 0 ]; then
+  tmux send-keys -t "web":$1
+  if [ $? -eq 0 ]; then
+    tmux a -t "web":$1
+    exit
+  else
+    tmux new-window -n $1 -c $PROJ_PATH$1
+  fi
 else
-  tmux new-window -k -n $1 -c $PROJ_PATH$1
+  tmux -2u new -d -s "web" -n $1 -c $PROJ_PATH$1
 fi
 
 tmux split-window -p 15 -c $PROJ_PATH$1/
