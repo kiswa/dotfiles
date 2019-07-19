@@ -58,6 +58,8 @@ set modelines=1
 set showmatch
 " Numeric commands increment hex and alpha (not octal)
 set nrformats=hex,alpha
+" Display autocomplete options
+" set wildmenu
 " Set the font
 set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
 " Don't wrap long lines
@@ -95,6 +97,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" Register Plug for help text
+Plug 'junegunn/vim-plug'
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
 " Markdown syntax highlighting
