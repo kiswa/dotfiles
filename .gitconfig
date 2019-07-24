@@ -3,7 +3,7 @@
   name = Matthew Ross
 [url "https://github.com/"]
   insteadOf = "gh:"
-[url "https://kiswa@github.com/kiswa/"]
+[url "git@github.com:kiswa/"]
   insteadOf = "ghk:"
 [alias]
   la = !git config -l | grep alias | cut -c 7-
@@ -26,6 +26,7 @@
   mg = merge
   st = status
   sta = stash
+  std = stash drop
   stp = stash pop
   sts = status -s
   undo = reset HEAD~1 --mixed
