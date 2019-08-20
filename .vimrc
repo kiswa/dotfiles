@@ -46,8 +46,6 @@ set splitright
 set encoding=utf-8
 " Ignore case when searching
 set ignorecase
-" Ignore certain files/directores
-set wildignore+=*/node_modules/*,*/.git/*,*/tmp/*,*.swp
 " Unless the search has capitals in it
 set smartcase
 " Default background color
@@ -58,8 +56,6 @@ set modelines=1
 set showmatch
 " Numeric commands increment hex and alpha (not octal)
 set nrformats=hex,alpha
-" Display autocomplete options
-" set wildmenu
 " Set the font
 set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
 " Don't wrap long lines
