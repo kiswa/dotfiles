@@ -68,6 +68,8 @@ set sessionoptions-=options
 set updatetime=300
 " Don't show |ins-completion-menu| messages
 set shortmess+=c
+" Use GUI colors
+set termguicolors
 
 " Syntax highlighting on
 syntax on
@@ -141,6 +143,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " }}}
 " Plugin Settings {{{
+" Fix color setting
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
