@@ -13,7 +13,7 @@ complete -cf sudo
 
 alias ls='ls -lh --color=auto --group-directories-first'
 alias la='ls -lha --color=auto --group-directories-first'
-alias web='cd ~/Projects/Web/'
+alias web='cd ~/Projects/web/'
 alias pacu='trizen -Syu'
 alias paclean='pacman -Rns $(pacman -Qtdq)'
 alias rmt='ssh 192.168.2.111'
