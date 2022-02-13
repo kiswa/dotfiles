@@ -2,10 +2,10 @@
 
 import urllib.request, json
 
-jsonurl = "https://stationdata.wunderground.com/cgi-bin/stationlookup?station=KGAALPHA136&units=english&v=2.0&format=json"
+jsonurl = "https://api.openweathermap.org/data/2.5/weather?q=Flower+Mound&units=imperial&appid=9d0f8ec6464502789eb644857f2cebe4"
 
 with urllib.request.urlopen(jsonurl) as url:
     data = json.loads(url.read().decode())
-    current = data['stations']['KGAALPHA136']
-    print(str(current['temperature']) + '°F' + ' - ' + str(current['wind_speed']) + 'mph')
+    current = data['main']
+    print(str(current['feels_like']) + '°F' + ' - ' + str(data['wind']['speed']) + 'mph')
 
