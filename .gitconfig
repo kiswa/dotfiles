@@ -31,6 +31,5 @@
   sts = status -s
   undo = reset HEAD~1 --mixed
   unstage = reset HEAD --
-
 [init]
-	defaultBranch = main
+  defaultBranch = main
