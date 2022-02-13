@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROJ_PATH=~/Projects/Web/
+PROJ_PATH=~/Projects/web/
 
 tmux has-session -t "web"
 if [ $? -eq 0 ]; then
