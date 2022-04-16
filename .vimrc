@@ -56,8 +56,6 @@ set modelines=1
 set showmatch
 " Numeric commands increment hex and alpha (not octal)
 set nrformats=hex,alpha
-" Set the font
-set guifont=FuraMonoForPowerline\ Nerd\ Font\ 11
 " Don't wrap long lines
 set nowrap
 " Mark line length
@@ -68,8 +66,6 @@ set sessionoptions-=options
 set updatetime=300
 " Don't show |ins-completion-menu| messages
 set shortmess+=c
-" Use GUI colors
-set termguicolors
 
 " Syntax highlighting on
 syntax on

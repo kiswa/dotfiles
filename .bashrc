@@ -6,7 +6,7 @@ if [[ $DISPLAY ]]; then
   # If not running interactively, don't do anything
   [[ $- != *i* ]] && return
   # Attach to, or launch, tmux
-  test -z "$TMUX" && (tmux attach || tmux new-session)
+  # test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
 
 complete -cf sudo
@@ -45,7 +45,6 @@ fi
 
 PATH="/usr/bin/npm:$PATH"
 PATH="/usr/bin/core_perl:$PATH"
-PATH="`ruby -e 'print Gem.user_dir'`/bin:$PATH"
 PATH="$HOME/bin/:$PATH"
 PATH="$HOME/.npm-global/bin:$PATH"
 
@@ -53,8 +52,6 @@ export MANPATH="$HOME/.npm-global/share/man:$(manpath)"
 
 export EDITOR="vim"
 unset SSH_ASKPASS # Keeps windows from opening when pushing git repo
-
-export QT_STYLE_OVERRIDE=kvantum
 
 # On a headless VM, use fbterm to allow 256-color display
 #[ -n "$FBTERM" ] && export TERM=fbterm

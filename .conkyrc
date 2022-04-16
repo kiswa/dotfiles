@@ -11,10 +11,10 @@ draw_graph_borders = true,
 draw_outline = false,
 draw_shades = true,
 use_xft = true,
-font = 'Fira Sans:size=11',
+font = 'Nota Sans:size=11',
 xftalpha = 0.8,
-gap_x = 30,
-gap_y = 30,
+gap_x = 15,
+gap_y = 15,
 no_buffers = true,
 out_to_console = false,
 out_to_stderr = false,
@@ -39,30 +39,30 @@ ${alignr}${exec whoami} @ $nodename
 ${alignr}$sysname $kernel $machine$color
 $hr
 ${color bbb}Uptime:$color $uptime_short
-${color bbb}RAM Usage:$color $memperc%${goto 240}${membar 4}
-${color bbb}CPU Usage:$color $cpu%${goto 240}${cpubar 4}
-  ${color grey}${cpugraph cpu0 45,80 29E6C6 E62949 -t}   ${cpugraph cpu1 45,80 29E6C6 E62949 -t} \
-  ${cpugraph cpu2 45,80 29E6C6 E62949 -t}   ${cpugraph cpu3 45,80 29E6C6 E62949 -t}
-  ${color grey}${cpugraph cpu4 45,80 29E6C6 E62949 -t}   ${cpugraph cpu5 45,80 29E6C6 E62949 -t} \
-  ${cpugraph cpu6 45,80 29E6C6 E62949 -t}   ${cpugraph cpu7 45,80 29E6C6 E62949 -t}
-  ${color grey}${cpugraph cpu8 45,80 29E6C6 E62949 -t}   ${cpugraph cpu9 45,80 29E6C6 E62949 -t} \
-  ${cpugraph cpu10 45,80 29E6C6 E62949 -t}   ${cpugraph cpu11 45,80 29E6C6 E62949 -t}
+${color bbb}RAM Usage:$color $memperc%${goto 150}${membar 3}
+${color bbb}CPU Usage:$color $cpu%${goto 150}${cpubar 3}
+ ${color grey}${cpugraph cpu0 30,55 29E6C6 E62949 -t}   ${cpugraph cpu1 30,55 29E6C6 E62949 -t} \
+  ${cpugraph cpu2 30,55 29E6C6 E62949 -t}   ${cpugraph cpu3 30,55 29E6C6 E62949 -t}
+ ${color grey}${cpugraph cpu4 30,55 29E6C6 E62949 -t}   ${cpugraph cpu5 30,55 29E6C6 E62949 -t} \
+  ${cpugraph cpu6 30,55 29E6C6 E62949 -t}   ${cpugraph cpu7 30,55 29E6C6 E62949 -t}
+ ${color grey}${cpugraph cpu8 30,55 29E6C6 E62949 -t}   ${cpugraph cpu9 30,55 29E6C6 E62949 -t} \
+  ${cpugraph cpu10 30,55 29E6C6 E62949 -t}   ${cpugraph cpu11 30,55 29E6C6 E62949 -t}
 ${alignc}${color bbb}CPU Frequency:$color ${freq_g}GHz
 ${alignc}${color bbb}Processes:$color $processes${color bbb}Running:$color $running_processes
 ${alignc}${color bbb}Battery:$color ${battery BAT0}
 $stippled_hr
 ${color bbb}File System Usage:$color
  / ${goto 150}${fs_used /}/${fs_size /}
- ${fs_bar 12,270 /} ${alignr}${fs_used_perc /}%
+ ${fs_bar 12,225 /} ${alignr}${fs_used_perc /}%
  /home ${goto 150}${fs_used /home}/${fs_size /home}
- ${fs_bar 12,270 /home} ${alignr}${fs_used_perc /home}%
+ ${fs_bar 12,225 /home} ${alignr}${fs_used_perc /home}%
 $stippled_hr
 ${color bbb}Networking:$color
- Up: ${upspeed wlan0}${goto 220}Down: ${downspeed wlan0}
- ${downspeedgraph wlan0 50,180 29E6C6 E62949 -t}${goto 220}\
-${upspeedgraph wlan0 50,180 29E6C6 E62949 -t}$color
+ Up: ${upspeed wlan0}${goto 140}Down: ${downspeed wlan0}
+ ${downspeedgraph wlan0 50,120 29E6C6 E62949 -t}${goto 140}\
+${upspeedgraph wlan0 50,120 29E6C6 E62949 -t}$color
 $stippled_hr
 ${alignc}${color bbb}Desktop$color ${desktop} ${color bbb}of$color ${desktop_number}
 #Update weather every 5 minutes
-${alignc}${color bbb}${texeci 300 python /home/kiswa/bin/weather.py}
+${alignc}${color bbb}${texeci 200 python /home/kiswa/bin/weather.py}
 ]]
