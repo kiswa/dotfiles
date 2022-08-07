@@ -66,6 +66,8 @@ set sessionoptions-=options
 set updatetime=300
 " Don't show |ins-completion-menu| messages
 set shortmess+=c
+" Colors fix
+set termguicolors
 
 " Syntax highlighting on
 syntax on
@@ -139,10 +141,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " }}}
 " Plugin Settings {{{
-" Fix color setting
-let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
@@ -159,14 +157,6 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
-
-" CoC settings
-" Use Tab to trigger completion with characters ahead
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
