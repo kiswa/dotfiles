@@ -58,9 +58,9 @@ ${color bbb}File System Usage:$color
  ${fs_bar 12,225 /home} ${alignr}${fs_used_perc /home}%
 $stippled_hr
 ${color bbb}Networking:$color
- Up: ${upspeed wlan0}${goto 140}Down: ${downspeed wlan0}
- ${downspeedgraph wlan0 50,120 29E6C6 E62949 -t}${goto 140}\
-${upspeedgraph wlan0 50,120 29E6C6 E62949 -t}$color
+ Up: ${upspeed wlp0s20f3}${goto 140}Down: ${downspeed wlp0s20f3}
+ ${downspeedgraph wlp0s20f3 50,120 29E6C6 E62949 -t}${goto 140}\
+${upspeedgraph wlp0s20f3 50,120 29E6C6 E62949 -t}$color
 $stippled_hr
 ${alignc}${color bbb}Desktop$color ${desktop} ${color bbb}of$color ${desktop_number}
 #Update weather every 5 minutes
