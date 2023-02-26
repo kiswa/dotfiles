@@ -3,9 +3,9 @@ alignment = 'middle_right',
 background = true,
 border_width = 2,
 cpu_avg_samples = 2,
-default_color = 'eee',
+default_color = 'eeeeee',
 default_outline_color = 'white',
-default_shade_color = '333',
+default_shade_color = '333333',
 draw_borders = false,
 draw_graph_borders = true,
 draw_outline = false,
@@ -38,31 +38,31 @@ conky.text = [[
 ${alignr}${exec whoami} @ $nodename
 ${alignr}$sysname $kernel $machine$color
 $hr
-${color bbb}Uptime:$color $uptime_short
-${color bbb}RAM Usage:$color $memperc%${goto 150}${membar 3}
-${color bbb}CPU Usage:$color $cpu%${goto 150}${cpubar 3}
+${color bbbbbb}Uptime:$color $uptime_short
+${color bbbbbb}RAM Usage:$color $memperc%${goto 150}${membar 3}
+${color bbbbbb}CPU Usage:$color $cpu%${goto 150}${cpubar 3}
  ${color grey}${cpugraph cpu0 30,55 29E6C6 E62949 -t}   ${cpugraph cpu1 30,55 29E6C6 E62949 -t} \
   ${cpugraph cpu2 30,55 29E6C6 E62949 -t}   ${cpugraph cpu3 30,55 29E6C6 E62949 -t}
  ${color grey}${cpugraph cpu4 30,55 29E6C6 E62949 -t}   ${cpugraph cpu5 30,55 29E6C6 E62949 -t} \
   ${cpugraph cpu6 30,55 29E6C6 E62949 -t}   ${cpugraph cpu7 30,55 29E6C6 E62949 -t}
  ${color grey}${cpugraph cpu8 30,55 29E6C6 E62949 -t}   ${cpugraph cpu9 30,55 29E6C6 E62949 -t} \
   ${cpugraph cpu10 30,55 29E6C6 E62949 -t}   ${cpugraph cpu11 30,55 29E6C6 E62949 -t}
-${alignc}${color bbb}CPU Frequency:$color ${freq_g}GHz
-${alignc}${color bbb}Processes:$color $processes${color bbb}Running:$color $running_processes
-${alignc}${color bbb}Battery:$color ${battery BAT0}
+${alignc}${color bbbbbb}CPU Frequency:$color ${freq_g}GHz
+${alignc}${color bbbbbb}Processes:$color $processes${color bbbbbb}Running:$color $running_processes
+${alignc}${color bbbbbb}Battery:$color ${battery BAT0}
 $stippled_hr
-${color bbb}File System Usage:$color
+${color bbbbbb}File System Usage:$color
  / ${goto 150}${fs_used /}/${fs_size /}
  ${fs_bar 12,225 /} ${alignr}${fs_used_perc /}%
  /home ${goto 150}${fs_used /home}/${fs_size /home}
  ${fs_bar 12,225 /home} ${alignr}${fs_used_perc /home}%
 $stippled_hr
-${color bbb}Networking:$color
+${color bbbbbb}Networking:$color
  Up: ${upspeed wlp0s20f3}${goto 140}Down: ${downspeed wlp0s20f3}
  ${downspeedgraph wlp0s20f3 50,120 29E6C6 E62949 -t}${goto 140}\
 ${upspeedgraph wlp0s20f3 50,120 29E6C6 E62949 -t}$color
 $stippled_hr
-${alignc}${color bbb}Desktop$color ${desktop} ${color bbb}of$color ${desktop_number}
+${alignc}${color bbbbbb}Desktop$color ${desktop} ${color bbbbbb}of$color ${desktop_number}
 #Update weather every 5 minutes
-${alignc}${color bbb}${texeci 200 python /home/kiswa/bin/weather.py}
+${alignc}${color bbbbbb}${texeci 200 python /home/kiswa/bin/weather.py}
 ]]
