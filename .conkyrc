@@ -64,5 +64,5 @@ ${upspeedgraph wlp0s20f3 50,120 29E6C6 E62949 -t}$color
 $stippled_hr
 ${alignc}${color bbbbbb}Desktop$color ${desktop} ${color bbbbbb}of$color ${desktop_number}
 #Update weather every 5 minutes
-${alignc}${color bbbbbb}${texeci 200 python /home/kiswa/bin/weather.py}
+${alignc}${color bbbbbb}${texeci 200 ~/bin/weather.py}
 ]]
