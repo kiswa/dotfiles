@@ -47,9 +47,13 @@ ${color bbbbbb}CPU Usage:$color $cpu%${goto 150}${cpubar 3}
   ${cpugraph cpu6 30,55 29E6C6 E62949 -t}   ${cpugraph cpu7 30,55 29E6C6 E62949 -t}
  ${color grey}${cpugraph cpu8 30,55 29E6C6 E62949 -t}   ${cpugraph cpu9 30,55 29E6C6 E62949 -t} \
   ${cpugraph cpu10 30,55 29E6C6 E62949 -t}   ${cpugraph cpu11 30,55 29E6C6 E62949 -t}
+ ${color grey}${cpugraph cpu12 30,55 29E6C6 E62949 -t}   ${cpugraph cpu13 30,55 29E6C6 E62949 -t} \
+  ${cpugraph cpu14 30,55 29E6C6 E62949 -t}   ${cpugraph cpu15 30,55 29E6C6 E62949 -t}
+ ${color grey}${cpugraph cpu16 30,55 29E6C6 E62949 -t}   ${cpugraph cpu17 30,55 29E6C6 E62949 -t} \
+  ${cpugraph cpu18 30,55 29E6C6 E62949 -t}   ${cpugraph cpu19 30,55 29E6C6 E62949 -t}
 ${alignc}${color bbbbbb}CPU Frequency:$color ${freq_g}GHz
 ${alignc}${color bbbbbb}Processes:$color $processes${color bbbbbb}Running:$color $running_processes
-${alignc}${color bbbbbb}Battery:$color ${battery BAT0}
+${alignc}${color bbbbbb}Battery:$color ${battery BAT0} ${battery_time BAT0}
 $stippled_hr
 ${color bbbbbb}File System Usage:$color
  / ${goto 150}${fs_used /}/${fs_size /}
