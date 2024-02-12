@@ -10,3 +10,5 @@ cp -R bin ~/
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 sudo -i mkdir /etc/pacman.d/hooks
 sudo -i cp $SCRIPTPATH/20-remove-cache-packages.hook /etc/pacman.d/hooks/
+
+sudo -i cp $SCRIPTPATH/pacman.conf /etc/
