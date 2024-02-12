@@ -14,7 +14,8 @@ A few files for setting up bash and Vim in different environments. Also includes
  * `.gitconfig` sets up my user and a couple of helpful aliases (edit this for your git user).
  * `.npmrc` use local directory `~/.npm-global` for global packages.
  * `.tmux.conf` sets up tmux configuration including Powerline-styled status line.
- * `20-remove-cache-packages.hook` is a pacman (Arch Linux package manager) hook to only keep the latest two versions in the package cache.
+ * `pacman.conf` configures the Arch Linux package manager pacman.
+ * `20-remove-cache-packages.hook` is a pacman hook to only keep the latest two versions in the package cache.
 
  To use everything, just run `install.sh` from within the `dotfiles` directory. To selectively use things, it's as easy as copying the files you want to the chosen destination.
 
