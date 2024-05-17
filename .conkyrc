@@ -31,7 +31,9 @@ uppercase = false,
 use_spacer = 'right',
 show_graph_scale = false,
 show_graph_range = false,
-double_buffer = true
+double_buffer = true,
+minimum_width = 420,
+maximum_width = 420
 }
 
 conky.text = [[
@@ -39,32 +41,32 @@ ${alignr}${exec whoami} @ $nodename
 ${alignr}$sysname $kernel $machine$color
 $hr
 ${color bbbbbb}Uptime:$color $uptime_short
-${color bbbbbb}RAM Usage:$color $memperc%${goto 150}${membar 3}
-${color bbbbbb}CPU Usage:$color $cpu%${goto 150}${cpubar 3}
- ${color grey}${cpugraph cpu0 30,55 29E6C6 E62949 -t}   ${cpugraph cpu1 30,55 29E6C6 E62949 -t} \
-  ${cpugraph cpu2 30,55 29E6C6 E62949 -t}   ${cpugraph cpu3 30,55 29E6C6 E62949 -t}
- ${color grey}${cpugraph cpu4 30,55 29E6C6 E62949 -t}   ${cpugraph cpu5 30,55 29E6C6 E62949 -t} \
-  ${cpugraph cpu6 30,55 29E6C6 E62949 -t}   ${cpugraph cpu7 30,55 29E6C6 E62949 -t}
- ${color grey}${cpugraph cpu8 30,55 29E6C6 E62949 -t}   ${cpugraph cpu9 30,55 29E6C6 E62949 -t} \
-  ${cpugraph cpu10 30,55 29E6C6 E62949 -t}   ${cpugraph cpu11 30,55 29E6C6 E62949 -t}
- ${color grey}${cpugraph cpu12 30,55 29E6C6 E62949 -t}   ${cpugraph cpu13 30,55 29E6C6 E62949 -t} \
-  ${cpugraph cpu14 30,55 29E6C6 E62949 -t}   ${cpugraph cpu15 30,55 29E6C6 E62949 -t}
- ${color grey}${cpugraph cpu16 30,55 29E6C6 E62949 -t}   ${cpugraph cpu17 30,55 29E6C6 E62949 -t} \
-  ${cpugraph cpu18 30,55 29E6C6 E62949 -t}   ${cpugraph cpu19 30,55 29E6C6 E62949 -t}
+${color bbbbbb}RAM Usage:$color $memperc%${goto 260}${membar 10}
+${color bbbbbb}CPU Usage:$color $cpu%${goto 260}${cpubar 10}
+${alignc}${cpugraph cpu0 50,90 29E6C6 E62949 -t}  ${cpugraph cpu1 50,90 29E6C6 E62949 -t}\
+  ${cpugraph cpu2 50,90 29E6C6 E62949 -t}  ${cpugraph cpu3 50,90 29E6C6 E62949 -t}
+${alignc}${cpugraph cpu4 50,90 29E6C6 E62949 -t}  ${cpugraph cpu5 50,90 29E6C6 E62949 -t}\
+  ${cpugraph cpu6 50,90 29E6C6 E62949 -t}  ${cpugraph cpu7 50,90 29E6C6 E62949 -t}
+${alignc}${cpugraph cpu8 50,90 29E6C6 E62949 -t}  ${cpugraph cpu9 50,90 29E6C6 E62949 -t}\
+  ${cpugraph cpu10 50,90 29E6C6 E62949 -t}  ${cpugraph cpu11 50,90 29E6C6 E62949 -t}
+${alignc}${cpugraph cpu12 50,90 29E6C6 E62949 -t}  ${cpugraph cpu13 50,90 29E6C6 E62949 -t}\
+  ${cpugraph cpu14 50,90 29E6C6 E62949 -t}  ${cpugraph cpu15 50,90 29E6C6 E62949 -t}
+${alignc}${cpugraph cpu16 50,90 29E6C6 E62949 -t}  ${cpugraph cpu17 50,90 29E6C6 E62949 -t}\
+  ${cpugraph cpu18 50,90 29E6C6 E62949 -t}  ${cpugraph cpu19 50,90 29E6C6 E62949 -t}
 ${alignc}${color bbbbbb}CPU Frequency:$color ${freq_g}GHz
 ${alignc}${color bbbbbb}Processes:$color $processes${color bbbbbb}Running:$color $running_processes
-${alignc}${color bbbbbb}Battery:$color ${battery BAT0} ${battery_time BAT0}
+${alignc}${color bbbbbb}Battery:$color ${battery_short} ${battery_time}
 $stippled_hr
 ${color bbbbbb}File System Usage:$color
- / ${goto 150}${fs_used /}/${fs_size /}
- ${fs_bar 12,225 /} ${alignr}${fs_used_perc /}%
- /home ${goto 150}${fs_used /home}/${fs_size /home}
- ${fs_bar 12,225 /home} ${alignr}${fs_used_perc /home}%
+ /${alignr}${fs_used /}/${fs_size /}
+ ${fs_bar 10,330 /}${alignr}${fs_used_perc /}%
+ /home${alignr}${fs_used /home}/${fs_size /home}
+ ${fs_bar 10,330 /home}${alignr}${fs_used_perc /home}%
 $stippled_hr
-${color bbbbbb}Networking:$color
- Up: ${upspeed wlp0s20f3}${goto 140}Down: ${downspeed wlp0s20f3}
- ${downspeedgraph wlp0s20f3 50,120 29E6C6 E62949 -t}${goto 140}\
-${upspeedgraph wlp0s20f3 50,120 29E6C6 E62949 -t}$color
+${color bbbbbb}Networking:
+ Up: $color${upspeed wlp0s20f3}${goto 220}${color bbbbbb}Down: $color${downspeed wlp0s20f3}
+ ${downspeedgraph wlp0s20f3 70,200 29E6C6 E62949 -t}${goto 220}\
+${upspeedgraph wlp0s20f3 70,200 29E6C6 E62949 -t}
 $stippled_hr
 ${alignc}${color bbbbbb}Desktop$color ${desktop} ${color bbbbbb}of$color ${desktop_number}
 #Update weather every 5 minutes
