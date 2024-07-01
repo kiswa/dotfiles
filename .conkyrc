@@ -32,8 +32,8 @@ use_spacer = 'right',
 show_graph_scale = false,
 show_graph_range = false,
 double_buffer = true,
-minimum_width = 420,
-maximum_width = 420
+minimum_width = 210,
+maximum_width = 210
 }
 
 conky.text = [[
@@ -41,8 +41,8 @@ ${alignr}${exec whoami} @ $nodename
 ${alignr}$sysname $kernel $machine$color
 $hr
 ${color bbbbbb}Uptime:$color $uptime_short
-${color bbbbbb}RAM Usage:$color $memperc%${goto 260}${membar 10}
-${color bbbbbb}CPU Usage:$color $cpu%${goto 260}${cpubar 10}
+${color bbbbbb}RAM Usage:$color $memperc%${goto 130}${membar 10}
+${color bbbbbb}CPU Usage:$color $cpu%${goto 130}${cpubar 10}
 ${alignc}${cpugraph cpu0 25,45 29E6C6 E62949 -t}  ${cpugraph cpu1 25,45 29E6C6 E62949 -t}\
   ${cpugraph cpu2 25,45 29E6C6 E62949 -t}  ${cpugraph cpu3 25,45 29E6C6 E62949 -t}
 ${alignc}${cpugraph cpu4 25,45 29E6C6 E62949 -t}  ${cpugraph cpu5 25,45 29E6C6 E62949 -t}\
@@ -65,8 +65,8 @@ ${color bbbbbb}File System Usage:$color
 $stippled_hr
 ${color bbbbbb}Networking:
  Up: $color${upspeed wlp0s20f3}${goto 115}${color bbbbbb}Down: $color${downspeed wlp0s20f3}
- ${downspeedgraph wlp0s20f3 40,95 29E6C6 E62949 -t}${goto 115}\
-${upspeedgraph wlp0s20f3 40,95 29E6C6 E62949 -t}
+ ${downspeedgraph wlp0s20f3 35,95 29E6C6 E62949 -t}${goto 115}\
+${upspeedgraph wlp0s20f3 35,95 29E6C6 E62949 -t}
 $stippled_hr
 ${alignc}${color bbbbbb}Desktop$color ${desktop} ${color bbbbbb}of$color ${desktop_number}
 #Update weather every 5 minutes
