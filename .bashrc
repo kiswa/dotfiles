@@ -18,6 +18,7 @@ alias pacu='trizen -Syu'
 alias paclean='sudo -i pacman -Rns $(pacman -Qtdq)'
 alias rmt='ssh 192.168.2.111'
 alias sudo='sudo '
+alias mine='sudo chown -R $(id -u -n):$(id -u -n)'
 
 function parse_git_dirty {
   [[ -n "$(git status -s 2> /dev/null)" ]] && echo -e '\033[1;31m'
