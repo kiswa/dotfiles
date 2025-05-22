@@ -64,7 +64,7 @@ ${color bbbbbb}File System Usage:$color
  ${fs_bar 10,170 /home}${alignr}${fs_used_perc /home}%
 $stippled_hr
 ${color bbbbbb}Networking:
- Up: $color${upspeed wlp0s20f3}${goto 115}${color bbbbbb}Down: $color${downspeed wlp0s20f3}
+ Down: $color${downspeed wlp0s20f3}${goto 115}${color bbbbbb}Up: $color${upspeed wlp0s20f3}
  ${downspeedgraph wlp0s20f3 35,95 29E6C6 E62949 -t}${goto 115}\
 ${upspeedgraph wlp0s20f3 35,95 29E6C6 E62949 -t}
 $stippled_hr
