@@ -11,13 +11,14 @@ fi
 
 complete -cf sudo
 
+alias sudo='sudo '
 alias ls='ls -lh --color=auto --group-directories-first'
 alias la='ls -lha --color=auto --group-directories-first'
 alias web='cd ~/Projects/web/'
 alias pacu='trizen -Syu'
 alias paclean='sudo -i pacman -Rns $(pacman -Qtdq)'
-alias rmt='ssh 192.168.2.111'
-alias sudo='sudo '
+alias pacun='sudo paccache -ruk0'
+alias rmt='ssh 192.168.4.111'
 alias mine='sudo chown -R $(id -u -n):$(id -u -n)'
 
 function parse_git_dirty {
@@ -49,7 +50,7 @@ PATH="/usr/bin/core_perl:$PATH"
 PATH="$HOME/bin/:$PATH"
 PATH="$HOME/.npm-global/bin:$PATH"
 
-export MANPATH="$HOME/.npm-global/share/man:$(manpath)"
+# export MANPATH="$HOME/.npm-global/share/man:$(manpath)"
 
 export EDITOR="vim"
 unset SSH_ASKPASS # Keeps windows from opening when pushing git repo
